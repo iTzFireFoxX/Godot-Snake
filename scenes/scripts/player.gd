@@ -40,6 +40,7 @@ func _process(delta):
 		snake[0][1] = dir
 		delSprites()
 		updateSnakePos()
+		updateSnakeDir()
 		drawSprite()
 
 
@@ -60,13 +61,67 @@ func drawSprite(): # Dibuja los sprites de cada parte de la serpiente en la pant
 				if i == (snake.size() - 1):
 					sprite.texture = tail_sprite
 				else:
-					sprite.texture = body_sprite
-				sprite.centered = true
+					# Esquina inferior derecha
+					if (snake[i - 1][0] == snake[i][0] + Vector2i.UP) and (snake[i + 1][0] == snake[i][0] + Vector2i.LEFT):
+						sprite.texture = corner_sprite
+						updateSpritePos(sprite, snake[i][0])
+						add_child(sprite) # Añadir sprite como nodo hijo
+						continue
+					elif (snake[i - 1][0] == snake[i][0] + Vector2i.LEFT) and (snake[i + 1][0] == snake[i][0] + Vector2i.UP):
+						sprite.texture = corner_sprite
+						updateSpritePos(sprite, snake[i][0])
+						add_child(sprite) # Añadir sprite como nodo hijo
+						continue
+
+					# Esquina superior derecha
+					elif (snake[i - 1][0] == snake[i][0] + Vector2i.LEFT) and (snake[i + 1][0] == snake[i][0] + Vector2i.DOWN):
+						sprite.texture = corner_sprite
+						updateSpritePos(sprite, snake[i][0])
+						updateSpriteRotation(sprite, Vector2i.UP)
+						add_child(sprite) # Añadir sprite como nodo hijo
+						continue
+					elif (snake[i - 1][0] == snake[i][0] + Vector2i.DOWN) and (snake[i + 1][0] == snake[i][0] + Vector2i.LEFT):
+						sprite.texture = corner_sprite
+						updateSpritePos(sprite, snake[i][0])
+						updateSpriteRotation(sprite, Vector2i.UP)
+						add_child(sprite) # Añadir sprite como nodo hijo
+						continue
+						
+					# Esquina superior izquierda
+					elif (snake[i - 1][0] == snake[i][0] + Vector2i.DOWN) and (snake[i + 1][0] == snake[i][0] + Vector2i.RIGHT):
+						sprite.texture = corner_sprite
+						updateSpritePos(sprite, snake[i][0])
+						updateSpriteRotation(sprite, Vector2i.LEFT)
+						add_child(sprite) # Añadir sprite como nodo hijo
+						continue
+					elif (snake[i - 1][0] == snake[i][0] + Vector2i.RIGHT) and (snake[i + 1][0] == snake[i][0] + Vector2i.DOWN):
+						sprite.texture = corner_sprite
+						updateSpritePos(sprite, snake[i][0])
+						updateSpriteRotation(sprite, Vector2i.LEFT)
+						add_child(sprite) # Añadir sprite como nodo hijo
+						continue
+
+					# Esquina inferior izquieda
+					elif (snake[i - 1][0] == snake[i][0] + Vector2i.RIGHT) and (snake[i + 1][0] == snake[i][0] + Vector2i.UP):
+						sprite.texture = corner_sprite
+						updateSpritePos(sprite, snake[i][0])
+						updateSpriteRotation(sprite, Vector2i.DOWN)
+						add_child(sprite) # Añadir sprite como nodo hijo
+						continue
+					elif (snake[i - 1][0] == snake[i][0] + Vector2i.UP) and (snake[i + 1][0] == snake[i][0] + Vector2i.RIGHT):
+						sprite.texture = corner_sprite
+						updateSpritePos(sprite, snake[i][0])
+						updateSpriteRotation(sprite, Vector2i.DOWN)
+						add_child(sprite) # Añadir sprite como nodo hijo
+						continue
+
+					else:
+						sprite.texture = body_sprite
 				updateSpritePos(sprite, snake[i][0])
 				updateSpriteRotation(sprite, snake[i][1])
 				add_child(sprite) # Añadir sprite como nodo hijo
 
-func updateSpriteRotation(sprite, d): # Actualiza la direccion de un sprite
+func updateSpriteRotation(sprite, d): # Actualiza la rotacion de un sprite
 	match d:
 		Vector2i.UP:
 			sprite.rotation_degrees = -90
@@ -81,3 +136,8 @@ func delSprites(): # Borra todos los Sprite2D antiguos
 	for i in get_children():
 		if i is Sprite2D:
 			i.queue_free()
+
+func updateSnakeDir(): # Actualiza la direccion de cada parte de la serpiente menos la cabeza
+	for i in range(snake.size() -1, -1, -1):
+		if i != 0:
+			snake[i][1] = snake[i - 1][1]

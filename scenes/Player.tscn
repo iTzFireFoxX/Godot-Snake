@@ -43,5 +43,6 @@ animations = [{
 script = ExtResource("2_v6fml")
 
 [node name="Head" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_qu4a1")
 animation = &"head_animation"
