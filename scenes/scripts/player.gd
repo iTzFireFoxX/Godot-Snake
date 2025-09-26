@@ -1,6 +1,9 @@
 extends Node2D
 
 
+var map_size: Vector2i = Vector2i(20, 10) # Definir tamaño del mapa (temporal)
+var cell_size: int = 16 # Definir tamaño de las casillas en pixeles
+
 # Definir variables
 var dir: Vector2i = Vector2i.RIGHT
 var timer : float = 0.0 # Contar el tiempo
@@ -9,7 +12,10 @@ var move_time : float = 0.5 # Intervalo de movimiento en segundos
 var snake: Array = [
 	[Vector2i(11, 5), Vector2i.RIGHT],
 	[Vector2i(10, 5), Vector2i.RIGHT],
-	[Vector2i(9, 5), Vector2i.RIGHT]
+	[Vector2i(9, 5), Vector2i.RIGHT],
+	[Vector2i(8, 5), Vector2i.RIGHT],
+	[Vector2i(7, 5), Vector2i.RIGHT],
+	[Vector2i(6, 5), Vector2i.RIGHT]
 ]
 
 
@@ -47,6 +53,15 @@ func _process(delta):
 func updateSnakePos(): # Actualiza la posicion en la celda de cada parte de la serpiente sumando su posicion actual con su direccion
 	for i in snake:
 		i[0] += i[1]
+		if i[0].x > map_size.x - 1:
+			i[0].x = 0
+		elif i[0].x < 0:
+			i[0].x = map_size.x - 1
+
+		if i[0].y > map_size.y - 1:
+			i[0].y = 0
+		elif i[0].y < 0:
+			i[0].y = map_size.y - 1
 
 func updateSpritePos(sprite, pos): # Actualiza la posicion en la pantalla de un sprite
 	sprite.position = (pos * 16) + Vector2i(8, 8)
