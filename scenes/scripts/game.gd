@@ -1,10 +1,15 @@
 extends Node2D
 
 
-var map_size: Vector2i = Vector2i(20, 10) # Definir tamaño del mapa (temporal)
-var cell_size: int = 16 # Definir tamaño de las casillas en pixeles
+# Definir variables
+var map_size: Vector2i # Tamaño del mapa en cantidad de casillas (ancho y alto)
+var cell_size: int # Tamaño de las casillas cuadradas
+var game_vel: float # Intervalo de velocidad a la que avanza el juego en segundos
 
 func _ready():
+	map_size = Vector2i(20, 20) # Definir tamaño del mapa (temporal)
+	cell_size = 16 # Definir tamaño de las casillas en pixeles
+	game_vel = 0.1 # Definir el intervalo de velocidad en segundos
 	queue_redraw()
 
 func _draw():

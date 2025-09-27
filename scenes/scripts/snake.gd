@@ -1,23 +1,11 @@
 extends Node2D
 
 
-var map_size: Vector2i = Vector2i(20, 10) # Definir tamaño del mapa (temporal)
-var cell_size: int = 16 # Definir tamaño de las casillas en pixeles
-
 # Definir variables
-var dir: Vector2i = Vector2i.RIGHT
-var timer : float = 0.0 # Contar el tiempo
-var move_time : float = 0.5 # Intervalo de movimiento en segundos
-# Serpiente inicial tamaño 3
-var snake: Array = [
-	[Vector2i(11, 5), Vector2i.RIGHT],
-	[Vector2i(10, 5), Vector2i.RIGHT],
-	[Vector2i(9, 5), Vector2i.RIGHT],
-	[Vector2i(8, 5), Vector2i.RIGHT],
-	[Vector2i(7, 5), Vector2i.RIGHT],
-	[Vector2i(6, 5), Vector2i.RIGHT]
-]
-
+var game: Node2D # La variable del Node2D padre para obtener sus variables y funciones
+var dir: Vector2i # Indica la dirección inicial que tendra la serpiente
+var timer : float # Cuenta el tiempo para cada tick del juego
+var snake: Array # El array que contiene todas las partes de la serpiente incluida la cabeza
 
 # Definir sprites
 @onready var head_animation = $Head # Temporal (placeholder)
@@ -27,10 +15,10 @@ var tail_sprite = preload("res://assets/sprites/snake_tail.png") # Temporal (pla
 
 
 func _ready():
-	drawSprite()
-	head_animation.play("head_animation") # Iniciar animacion de la cabeza de la serpiente
+	call_deferred("initSetup")
 
 func _process(delta):
+	
 	if Input.is_action_pressed("move_up") and snake[0][1] != Vector2i.DOWN:
 		dir = Vector2i.UP 
 	elif Input.is_action_pressed("move_down") and snake[0][1] != Vector2i.UP:
@@ -41,32 +29,47 @@ func _process(delta):
 		dir = Vector2i.LEFT
 
 	timer += delta
-	if timer >= move_time:
+
+	if timer >= game.game_vel:
 		timer = 0.0
 		snake[0][1] = dir
 		delSprites()
 		updateSnakePos()
 		updateSnakeDir()
-		drawSprite()
+		drawSprites()
 
-
+func initSetup():
+	game = get_parent() # Llama al nodo padre
+	dir = Vector2i.RIGHT # Dirección inicial derecha
+	timer = 0.0 # Tiempo inicial en 0
+	snake = [
+		[Vector2i((game.map_size.x / 2) + 1, game.map_size.y / 2), Vector2i.RIGHT],
+		[Vector2i(game.map_size.x / 2, game.map_size.y / 2), Vector2i.RIGHT],
+		[Vector2i((game.map_size.x / 2) - 1, game.map_size.y / 2), Vector2i.RIGHT]
+	] # Serpiente inicial
+	drawSprites()
+	head_animation.play("head_animation") # Iniciar animacion de la cabeza de la serpiente
+	
 func updateSnakePos(): # Actualiza la posicion en la celda de cada parte de la serpiente sumando su posicion actual con su direccion
 	for i in snake:
 		i[0] += i[1]
-		if i[0].x > map_size.x - 1:
+
+		# Dar la vuelta por los lados
+		if i[0].x > game.map_size.x - 1:
 			i[0].x = 0
 		elif i[0].x < 0:
-			i[0].x = map_size.x - 1
+			i[0].x = game.map_size.x - 1
 
-		if i[0].y > map_size.y - 1:
+		# Dar la vuelta por arriba y abajo
+		if i[0].y > game.map_size.y - 1:
 			i[0].y = 0
 		elif i[0].y < 0:
-			i[0].y = map_size.y - 1
+			i[0].y = game.map_size.y - 1
 
 func updateSpritePos(sprite, pos): # Actualiza la posicion en la pantalla de un sprite
-	sprite.position = (pos * 16) + Vector2i(8, 8)
+	sprite.position = (pos * game.cell_size) + Vector2i(game.cell_size / 2, game.cell_size / 2)
 
-func drawSprite(): # Dibuja los sprites de cada parte de la serpiente en la pantalla
+func drawSprites(): # Dibuja los sprites de cada parte de la serpiente en la pantalla
 		for i in range(snake.size()):
 			if i == 0:
 				updateSpritePos(head_animation, snake[0][0])
