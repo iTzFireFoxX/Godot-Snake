@@ -47,7 +47,6 @@ func updateSnakePos(): # Actualiza la posicion en la celda de cada parte de la s
 			if snake[0][0] == game.apple_pos:
 				addSnakePart()
 				game.apple_pos = Vector2i(-1, -1)
-
 func drawSnakeSprites(): # Dibuja los sprites de cada parte de la serpiente en la pantalla
 		for i in range(snake.size()):
 
@@ -97,5 +96,5 @@ func updateSnakeDir(): # Actualiza la direccion de cada parte de la serpiente me
 		if i != 0:
 			snake[i][1] = snake[i - 1][1]
 
-func addSnakePart():
+func addSnakePart(): # Añade una parte a la serpiente
 	snake.append([snake[snake.size() - 1][0], snake[snake.size() - 1][1]])

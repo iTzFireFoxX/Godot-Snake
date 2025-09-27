@@ -10,6 +10,7 @@ var apple: Sprite2D # Nodo de la manzana
 var apple_pos: Vector2i # Posicion de la manzana (casilla)
 var snake: Node2D # Nodo del hijo snake
 var dir: Vector2i
+var snake_pos: Array
 
 var rng = RandomNumberGenerator.new() # Generación de números aleatorios
 
@@ -18,7 +19,7 @@ var apple_sprite = preload("res://assets/sprites/apple.png")
 
 func _ready():
 	snake = $Snake
-	map_size = Vector2i(6, 6) # Definir tamaño del mapa (temporal)
+	map_size = Vector2i(10, 5) # Definir tamaño del mapa (temporal)
 	cell_size = 16 # Definir tamaño de las casillas en pixeles
 	game_vel = 0.5 # Definir el intervalo de velocidad en segundos
 	call_deferred("drawApple")
@@ -42,6 +43,18 @@ func _process(delta):
 		del2DSprites(snake)
 		snake.updateSnakePos()
 		snake.updateSnakeDir()
+
+		snake_pos = []
+		for j in snake.snake:
+			snake_pos.append(j[0])
+		snake_pos.pop_front()
+		if snake.snake[0][0] in snake_pos:
+			print("perdiste")
+			get_tree().quit()
+			return
+		if snake.snake.size() >= (map_size.x * map_size.y):
+			print("ganaste")
+			return
 		if apple_pos == Vector2i(-1, -1):
 			del2DSprites(self)
 			drawApple()
@@ -80,10 +93,10 @@ func drawSprite(sprite, texture, pos, rot, node): # Dibuja un sprite en pantalla
 	sprite.rotation_degrees = rot
 	node.add_child(sprite)
 
-func returnSpritePos(pos): # Retorna la posicion a la que debe dibujarse un sprite en la pantalla
+func returnSpritePos(pos): # Retorna la posición a la que debe dibujarse un sprite en la pantalla
 	return (pos * cell_size) + Vector2i(cell_size / 2, cell_size / 2)
 
-func returnSpriteRotation(d): # Retorna la rotacion de un sprite dependiendo de su direccion
+func returnSpriteRotation(d): # Retorna la rotacion de un sprite dependiendo de su dirección
 	match d:
 		Vector2i.UP:
 			return -90
