@@ -29,24 +29,33 @@ func initSetup():
 func updateSnakePos(): # Actualiza la posicion en la celda de cada parte de la serpiente sumando su posicion actual con su direccion
 	for i in range(snake.size()):
 
-		snake[i][0] += snake[i][1]
-
-		# Dar la vuelta por los lados
-		if snake[i][0].x > game.map_size.x - 1:
-			snake[i][0].x = 0
-		elif snake[i][0].x < 0:
-			snake[i][0].x = game.map_size.x - 1
-
-		# Dar la vuelta por arriba y abajo
-		if snake[i][0].y > game.map_size.y - 1:
-			snake[i][0].y = 0
-		elif snake[i][0].y < 0:
-			snake[i][0].y = game.map_size.y - 1
+		snake[i][0] = returnUpdatedPos(snake[i][0], snake[i][1])
 
 		if i == 0:
 			if snake[0][0] == game.apple_pos:
 				addSnakePart()
 				game.apple_pos = Vector2i(-1, -1)
+
+func returnUpdatedPos(pos, dir): # Retorna la posicion actualizada de una parte de la serpiente en base a la dirección que tiene
+
+	var updated_pos: Vector2i
+
+	updated_pos = pos + dir
+
+	# Dar la vuelta por los lados
+	if pos.x > game.map_size.x - 1:
+		updated_pos.x = 0
+	elif pos.x < 0:
+		updated_pos.x = game.map_size.x - 1
+
+	# Dar la vuelta por arriba y abajo
+	if pos.y > game.map_size.y - 1:
+		updated_pos.y = 0
+	elif pos.y < 0:
+		updated_pos.y = game.map_size.y - 1
+	
+	return updated_pos
+
 func drawSnakeSprites(): # Dibuja los sprites de cada parte de la serpiente en la pantalla
 		for i in range(snake.size()):
 
@@ -63,30 +72,23 @@ func drawSnakeSprites(): # Dibuja los sprites de cada parte de la serpiente en l
 
 				# Sprite esquinas
 				else:
+
 					# Esquina inferior derecha
-					if (snake[i - 1][0] == snake[i][0] + Vector2i.UP) and (snake[i + 1][0] == snake[i][0] + Vector2i.LEFT):
-						game.drawSprite(sprite, corner_sprite, snake[i][0], 0, self)
-					elif (snake[i - 1][0] == snake[i][0] + Vector2i.LEFT) and (snake[i + 1][0] == snake[i][0] + Vector2i.UP):
+					if ((snake[i - 1][0] == snake[i][0] + Vector2i.UP) and (snake[i + 1][0] == snake[i][0] + Vector2i.LEFT) or (snake[i - 1][0] == snake[i][0] + Vector2i.LEFT) and (snake[i + 1][0] == snake[i][0] + Vector2i.UP)):
 						game.drawSprite(sprite, corner_sprite, snake[i][0], 0, self)
 
 					# Esquina superior derecha
-					elif (snake[i - 1][0] == snake[i][0] + Vector2i.LEFT) and (snake[i + 1][0] == snake[i][0] + Vector2i.DOWN):
-						game.drawSprite(sprite, corner_sprite, snake[i][0], -90, self)
-					elif (snake[i - 1][0] == snake[i][0] + Vector2i.DOWN) and (snake[i + 1][0] == snake[i][0] + Vector2i.LEFT):
+					elif ((snake[i - 1][0] == snake[i][0] + Vector2i.LEFT) and (snake[i + 1][0] == snake[i][0] + Vector2i.DOWN) or (snake[i - 1][0] == snake[i][0] + Vector2i.DOWN) and (snake[i + 1][0] == snake[i][0] + Vector2i.LEFT)):
 						game.drawSprite(sprite, corner_sprite, snake[i][0], -90, self)
 
 					# Esquina superior izquierda
-					elif (snake[i - 1][0] == snake[i][0] + Vector2i.DOWN) and (snake[i + 1][0] == snake[i][0] + Vector2i.RIGHT):
-						game.drawSprite(sprite, corner_sprite, snake[i][0], 180, self)
-					elif (snake[i - 1][0] == snake[i][0] + Vector2i.RIGHT) and (snake[i + 1][0] == snake[i][0] + Vector2i.DOWN):
+					elif ((snake[i - 1][0] == snake[i][0] + Vector2i.DOWN) and (snake[i + 1][0] == snake[i][0] + Vector2i.RIGHT) or (snake[i - 1][0] == snake[i][0] + Vector2i.RIGHT) and (snake[i + 1][0] == snake[i][0] + Vector2i.DOWN)):
 						game.drawSprite(sprite, corner_sprite, snake[i][0], 180, self)
 
 					# Esquina inferior izquieda
-					elif (snake[i - 1][0] == snake[i][0] + Vector2i.RIGHT) and (snake[i + 1][0] == snake[i][0] + Vector2i.UP):
+					elif ((snake[i - 1][0] == snake[i][0] + Vector2i.RIGHT) and (snake[i + 1][0] == snake[i][0] + Vector2i.UP) or (snake[i - 1][0] == snake[i][0] + Vector2i.UP) and (snake[i + 1][0] == snake[i][0] + Vector2i.RIGHT)):
 						game.drawSprite(sprite, corner_sprite, snake[i][0], 90, self)
-					elif (snake[i - 1][0] == snake[i][0] + Vector2i.UP) and (snake[i + 1][0] == snake[i][0] + Vector2i.RIGHT):
-						game.drawSprite(sprite, corner_sprite, snake[i][0], 90, self)
-					
+
 					# Sprite body
 					else: 
 						game.drawSprite(sprite, body_sprite, snake[i][0], game.returnSpriteRotation(snake[i][1]), self)

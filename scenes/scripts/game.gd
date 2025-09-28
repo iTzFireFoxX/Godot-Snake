@@ -19,9 +19,9 @@ var apple_sprite = preload("res://assets/sprites/apple.png")
 
 func _ready():
 	snake = $Snake
-	map_size = Vector2i(10, 5) # Definir tamaño del mapa (temporal)
+	map_size = Vector2i(20, 20) # Definir tamaño del mapa (temporal)
 	cell_size = 16 # Definir tamaño de las casillas en pixeles
-	game_vel = 0.5 # Definir el intervalo de velocidad en segundos
+	game_vel = 0.2 # Definir el intervalo de velocidad en segundos
 	call_deferred("drawApple")
 	queue_redraw()
 
@@ -52,12 +52,14 @@ func _process(delta):
 			print("perdiste")
 			get_tree().quit()
 			return
-		if snake.snake.size() >= (map_size.x * map_size.y):
-			print("ganaste")
-			return
 		if apple_pos == Vector2i(-1, -1):
 			del2DSprites(self)
-			drawApple()
+			if snake.snake.size() >= (map_size.x * map_size.y):
+				snake.drawSnakeSprites()
+				print("ganaste")
+				return
+			else:
+				drawApple()
 		snake.drawSnakeSprites()
 
 func _draw():
@@ -73,7 +75,7 @@ func _draw():
 
 func drawApple(): # Dibuja la manzana en el mapa de forma aleatoria teniendo en cuenta a la serpiente
 	var n: int
-	var snake_pos: Array
+	snake_pos = []
 	while true:
 		n = rng.randi_range(0, map_size.x - 1)
 		apple_pos.x = n
