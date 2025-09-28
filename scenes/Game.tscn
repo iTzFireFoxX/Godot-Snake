@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bietb16ebyvry"]
+[gd_scene load_steps=10 format=3 uid="uid://bietb16ebyvry"]
 
 [ext_resource type="Script" uid="uid://bmnugxcdmw3dp" path="res://scenes/scripts/game.gd" id="1_cpr0p"]
 [ext_resource type="Script" uid="uid://bmnsd71ew565l" path="res://scenes/scripts/snake.gd" id="2_78awf"]
 [ext_resource type="Texture2D" uid="uid://cwdglije8puvd" path="res://assets/sprites/snake_head.png" id="3_s0nni"]
+[ext_resource type="Script" uid="uid://jsai3mb7pw41" path="res://scenes/scripts/camera.gd" id="4_78awf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aug50"]
 atlas = ExtResource("3_s0nni")
@@ -50,3 +51,6 @@ script = ExtResource("2_78awf")
 [node name="Head" type="AnimatedSprite2D" parent="Snake"]
 sprite_frames = SubResource("SpriteFrames_qy1jj")
 animation = &"head_animation"
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("4_78awf")

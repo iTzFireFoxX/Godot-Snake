@@ -8,7 +8,7 @@ var cell_size: int # Tamaño de las casillas cuadradas
 var game_vel: float # Intervalo de velocidad a la que avanza el juego en segundos
 var apple: Sprite2D # Nodo de la manzana
 var apple_pos: Vector2i # Posicion de la manzana (casilla)
-var snake: Node2D # Nodo del hijo snake
+var snake: Node2D # Nodo de la serpiente
 var dir: Vector2i
 var snake_pos: Array
 
@@ -19,9 +19,9 @@ var apple_sprite = preload("res://assets/sprites/apple.png")
 
 func _ready():
 	snake = $Snake
-	map_size = Vector2i(20, 20) # Definir tamaño del mapa (temporal)
+	map_size = Vector2i(5, 5) # Definir tamaño del mapa (temporal)
 	cell_size = 16 # Definir tamaño de las casillas en pixeles
-	game_vel = 0.4 # Definir el intervalo de velocidad en segundos
+	game_vel = 0.3 # Definir el intervalo de velocidad en segundos
 	call_deferred("drawApple")
 	queue_redraw()
 
@@ -48,15 +48,18 @@ func _process(delta):
 		for j in snake.snake:
 			snake_pos.append(j[0])
 		snake_pos.pop_front()
+
+		# Perder
 		if snake.snake[0][0] in snake_pos:
-			print("perdiste")
 			get_tree().quit()
 			return
+			
 		if apple_pos == Vector2i(-1, -1):
 			del2DSprites(self)
+
+			# Ganar
 			if snake.snake.size() >= (map_size.x * map_size.y):
 				snake.drawSnakeSprites()
-				print("ganaste")
 				return
 			else:
 				drawApple()
