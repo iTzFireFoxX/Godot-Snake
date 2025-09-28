@@ -38,22 +38,22 @@ func updateSnakePos(): # Actualiza la posicion en la celda de cada parte de la s
 
 func returnUpdatedPos(pos, dir): # Retorna la posicion actualizada de una parte de la serpiente en base a la dirección que tiene
 
-	var updated_pos: Vector2i
+	var updated_pos = pos
 
-	updated_pos = pos + dir
+	updated_pos += dir
 
 	# Dar la vuelta por los lados
-	if pos.x > game.map_size.x - 1:
+	if updated_pos.x > game.map_size.x - 1:
 		updated_pos.x = 0
-	elif pos.x < 0:
+	elif updated_pos.x < 0:
 		updated_pos.x = game.map_size.x - 1
 
 	# Dar la vuelta por arriba y abajo
-	if pos.y > game.map_size.y - 1:
+	if updated_pos.y > game.map_size.y - 1:
 		updated_pos.y = 0
-	elif pos.y < 0:
+	elif updated_pos.y < 0:
 		updated_pos.y = game.map_size.y - 1
-	
+
 	return updated_pos
 
 func drawSnakeSprites(): # Dibuja los sprites de cada parte de la serpiente en la pantalla
@@ -74,19 +74,19 @@ func drawSnakeSprites(): # Dibuja los sprites de cada parte de la serpiente en l
 				else:
 
 					# Esquina inferior derecha
-					if ((snake[i - 1][0] == snake[i][0] + Vector2i.UP) and (snake[i + 1][0] == snake[i][0] + Vector2i.LEFT) or (snake[i - 1][0] == snake[i][0] + Vector2i.LEFT) and (snake[i + 1][0] == snake[i][0] + Vector2i.UP)):
+					if ((returnUpdatedPos(snake[i][0], Vector2i.UP) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.LEFT) == snake[i + 1][0])) or ((returnUpdatedPos(snake[i][0], Vector2i.LEFT) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.UP) == snake[i + 1][0])):
 						game.drawSprite(sprite, corner_sprite, snake[i][0], 0, self)
 
 					# Esquina superior derecha
-					elif ((snake[i - 1][0] == snake[i][0] + Vector2i.LEFT) and (snake[i + 1][0] == snake[i][0] + Vector2i.DOWN) or (snake[i - 1][0] == snake[i][0] + Vector2i.DOWN) and (snake[i + 1][0] == snake[i][0] + Vector2i.LEFT)):
+					elif ((returnUpdatedPos(snake[i][0], Vector2i.LEFT) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.DOWN) == snake[i + 1][0])) or ((returnUpdatedPos(snake[i][0], Vector2i.DOWN) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.LEFT) == snake[i + 1][0])):
 						game.drawSprite(sprite, corner_sprite, snake[i][0], -90, self)
 
 					# Esquina superior izquierda
-					elif ((snake[i - 1][0] == snake[i][0] + Vector2i.DOWN) and (snake[i + 1][0] == snake[i][0] + Vector2i.RIGHT) or (snake[i - 1][0] == snake[i][0] + Vector2i.RIGHT) and (snake[i + 1][0] == snake[i][0] + Vector2i.DOWN)):
+					elif ((returnUpdatedPos(snake[i][0], Vector2i.DOWN) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.RIGHT) == snake[i + 1][0])) or ((returnUpdatedPos(snake[i][0], Vector2i.RIGHT) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.DOWN) == snake[i + 1][0])):
 						game.drawSprite(sprite, corner_sprite, snake[i][0], 180, self)
 
 					# Esquina inferior izquieda
-					elif ((snake[i - 1][0] == snake[i][0] + Vector2i.RIGHT) and (snake[i + 1][0] == snake[i][0] + Vector2i.UP) or (snake[i - 1][0] == snake[i][0] + Vector2i.UP) and (snake[i + 1][0] == snake[i][0] + Vector2i.RIGHT)):
+					elif ((returnUpdatedPos(snake[i][0], Vector2i.RIGHT) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.UP) == snake[i + 1][0])) or ((returnUpdatedPos(snake[i][0], Vector2i.UP) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.RIGHT) == snake[i + 1][0])):
 						game.drawSprite(sprite, corner_sprite, snake[i][0], 90, self)
 
 					# Sprite body

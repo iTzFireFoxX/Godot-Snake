@@ -21,7 +21,7 @@ func _ready():
 	snake = $Snake
 	map_size = Vector2i(20, 20) # Definir tamaño del mapa (temporal)
 	cell_size = 16 # Definir tamaño de las casillas en pixeles
-	game_vel = 0.2 # Definir el intervalo de velocidad en segundos
+	game_vel = 0.4 # Definir el intervalo de velocidad en segundos
 	call_deferred("drawApple")
 	queue_redraw()
 
