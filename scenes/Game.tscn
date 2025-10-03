@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://bietb16ebyvry"]
+
+[ext_resource type="Script" uid="uid://bmnugxcdmw3dp" path="res://scenes/scripts/game.gd" id="1_cpr0p"]
+[ext_resource type="Script" uid="uid://bmnsd71ew565l" path="res://scenes/scripts/snake.gd" id="2_78awf"]
+[ext_resource type="Texture2D" uid="uid://cwdglije8puvd" path="res://assets/sprites/snake_head.png" id="3_s0nni"]
+[ext_resource type="Script" uid="uid://jsai3mb7pw41" path="res://scenes/scripts/camera.gd" id="4_78awf"]
+[ext_resource type="Texture2D" uid="uid://bwtvddqfrbmla" path="res://assets/sprites/apple.png" id="5_s0nni"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aug50"]
+atlas = ExtResource("3_s0nni")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiw3p"]
+atlas = ExtResource("3_s0nni")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_400sg"]
+atlas = ExtResource("3_s0nni")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4kob"]
+atlas = ExtResource("3_s0nni")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qy1jj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aug50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiw3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_400sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4kob")
+}],
+"loop": true,
+"name": &"head_animation",
+"speed": 5.0
+}]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_cpr0p")
+metadata/_edit_horizontal_guides_ = [522.0]
+
+[node name="Snake" type="Node2D" parent="."]
+script = ExtResource("2_78awf")
+
+[node name="Head" type="AnimatedSprite2D" parent="Snake"]
+sprite_frames = SubResource("SpriteFrames_qy1jj")
+animation = &"head_animation"
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("4_78awf")
+
+[node name="Apple" type="Sprite2D" parent="."]
+texture = ExtResource("5_s0nni")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
