@@ -11,6 +11,7 @@ var apple_pos: Vector2i # Posicion de la manzana (casilla)
 var snake: Node2D # Nodo de la serpiente
 var dir: Vector2i
 var snake_pos: Array
+var win: bool
 
 var rng = RandomNumberGenerator.new() # Generación de números aleatorios
 
@@ -18,10 +19,12 @@ var rng = RandomNumberGenerator.new() # Generación de números aleatorios
 var apple_sprite = preload("res://assets/sprites/apple.png")
 
 func _ready():
+	win = false
 	snake = $Snake
-	map_size = Vector2i(5, 5) # Definir tamaño del mapa (temporal)
+	apple = $Apple
+	map_size = Vector2i(10, 10) # Definir tamaño del mapa (temporal)
 	cell_size = 16 # Definir tamaño de las casillas en pixeles
-	game_vel = 0.3 # Definir el intervalo de velocidad en segundos
+	game_vel = 0.4 # Definir el intervalo de velocidad en segundos
 	call_deferred("drawApple")
 	queue_redraw()
 
@@ -49,20 +52,23 @@ func _process(delta):
 			snake_pos.append(j[0])
 		snake_pos.pop_front()
 
-		# Perder
-		if snake.snake[0][0] in snake_pos:
-			get_tree().quit()
-			return
-			
-		if apple_pos == Vector2i(-1, -1):
-			del2DSprites(self)
+		# Ganar
+		if win == true:
+			print("ganaste")
+			get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+		if snake.snake.size() >= (map_size.x * map_size.y):
+			apple.position = returnSpritePos(apple_pos)
+			win = true
 
-			# Ganar
-			if snake.snake.size() >= (map_size.x * map_size.y):
-				snake.drawSnakeSprites()
-				return
-			else:
-				drawApple()
+		# Perder
+		elif snake.snake[0][0] in snake_pos:
+			print("perdiste")
+			get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+		
+		# Redibujar manzana
+		elif apple_pos == Vector2i(-1, -1):
+			drawApple()
+		
 		snake.drawSnakeSprites()
 
 func _draw():
@@ -88,9 +94,7 @@ func drawApple(): # Dibuja la manzana en el mapa de forma aleatoria teniendo en 
 			snake_pos.append(i[0])
 		if apple_pos not in snake_pos:
 			break
-	apple = Sprite2D.new()
-	apple.name = "Apple"
-	drawSprite(apple, apple_sprite, apple_pos, 0, self)
+	apple.position = returnSpritePos(apple_pos)
 
 func drawSprite(sprite, texture, pos, rot, node): # Dibuja un sprite en pantalla
 	sprite.texture = texture
@@ -111,10 +115,6 @@ func returnSpriteRotation(d): # Retorna la rotacion de un sprite dependiendo de 
 			return 0
 		Vector2i.LEFT:
 			return 180
-
-func delNodesbyName(node, n): # Borra los Nodos por nombre (aun inutil)
-		if node.has_node(n):
-			get_node(n).queue_free()
 
 func del2DSprites(node): # Borra todos los Sprites2D
 	for i in node.get_children():

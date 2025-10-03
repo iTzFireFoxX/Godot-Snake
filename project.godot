@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="Godot Snake"
-run/main_scene="uid://bietb16ebyvry"
+config/description="El clásico juego Snake recreado desde cero en Godot"
+config/version="0.1.0-beta"
+run/main_scene="uid://c8qi8w4r0wuew"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/size/resizable=false
+window/size/borderless=true
 
 [input]
 

@@ -12,12 +12,12 @@ func _ready():
 func _process(delta):
 	dynamicZoom()
 
-func initCamera():
+func initCamera(): # Inizializar camara
 	game = get_parent()
 	dynamicZoom()
 	position = Vector2((game.map_size.x * game.cell_size) / 2, (game.map_size.y * game.cell_size) / 2)
 
-func dynamicZoom():
+func dynamicZoom(): # Zoom dinamico al redimensionar
 	viewport = get_viewport_rect().size
 	zoom_x = viewport.x / (game.map_size.x * game.cell_size)
 	zoom_y = viewport.y / (game.map_size.y * game.cell_size)
