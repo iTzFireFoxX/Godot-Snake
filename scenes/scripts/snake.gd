@@ -7,9 +7,9 @@ var snake: Array # El array que contiene todas las partes de la serpiente inclui
 
 # Definir sprites
 @onready var head = $Head # Temporal (placeholder)
-var body_sprite = preload("res://assets/sprites/snake_body.png") # Temporal (placeholder)
-var corner_sprite = preload("res://assets/sprites/snake_corner.png") # Temporal (placeholder)
-var tail_sprite = preload("res://assets/sprites/snake_tail.png") # Temporal (placeholder)
+var body_sprite = preload("res://assets/sprites/snake/snake_body.png") # Temporal (placeholder)
+var corner_sprite = preload("res://assets/sprites/snake/snake_corner.png") # Temporal (placeholder)
+var tail_sprite = preload("res://assets/sprites/snake/snake_tail.png") # Temporal (placeholder)
 
 
 func _ready():
