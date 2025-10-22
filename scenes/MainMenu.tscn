@@ -11,8 +11,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l72w3")
@@ -28,48 +26,49 @@ color = Color(0.38039216, 0.6, 1, 1)
 
 [node name="Title" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -512.0
-offset_top = 50.0
-offset_right = 512.0
-offset_bottom = 306.0
+anchors_preset = -1
+anchor_top = 0.13333334
+anchor_right = 1.0
+anchor_bottom = 0.35555556
+offset_top = 4.9999924
+offset_bottom = 5.0
 grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_l72w3")
-expand_mode = 5
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
-[node name="MainButtons" type="VBoxContainer" parent="."]
+[node name="MainButtons" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -570.0
-offset_right = 256.0
-offset_bottom = -58.0
+anchors_preset = -1
+anchor_left = 0.046875
+anchor_top = 0.5277778
+anchor_right = 0.953125
+anchor_bottom = 0.6888889
+offset_bottom = 5.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 50
+grow_vertical = 2
+theme_override_constants/separation = 75
 alignment = 1
-
-[node name="Play" type="TextureButton" parent="MainButtons"]
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("3_826wr")
-stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Options" type="TextureButton" parent="MainButtons"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource("4_ucygd")
 stretch_mode = 5
 
+[node name="Play" type="TextureButton" parent="MainButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("3_826wr")
+stretch_mode = 5
+
 [node name="Exit" type="TextureButton" parent="MainButtons"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource("5_mipys")
 stretch_mode = 5
@@ -87,41 +86,70 @@ offset_bottom = 40.0
 
 [node name="OptionsMenu" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -537.0
+offset_top = -401.0
+offset_right = 537.0
+offset_bottom = 401.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="OptionsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsTitle" type="Label" parent="OptionsMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_right = 36.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Opciones"
+horizontal_alignment = 1
 
 [node name="OptionsButtons" type="VBoxContainer" parent="OptionsMenu"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 760.0
-offset_top = 820.0
-offset_right = 800.0
-offset_bottom = 860.0
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -306.0
+offset_right = 16.0
+offset_bottom = 10.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+
+[node name="ResButton" type="OptionButton" parent="OptionsMenu/OptionsButtons"]
+layout_mode = 2
 
 [node name="Version" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -50.0
-offset_right = -9.0
-offset_bottom = -5.0
+anchors_preset = -1
+anchor_left = 0.99375
+anchor_top = 0.9444444
+anchor_right = 0.994375
+anchor_bottom = 0.99444443
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainButtons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainButtons/Exit" to="." method="_on_exit_pressed"]
