@@ -1,23 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://hpkwrv04k2gf"]
+[gd_scene format=3 uid="uid://hpkwrv04k2gf"]
 
 [ext_resource type="Script" uid="uid://bm0u6laj2hv13" path="res://scenes/scripts/main_menu.gd" id="1_l72w3"]
-[ext_resource type="Texture2D" uid="uid://dxsiujjd5t4ws" path="res://assets/sprites/title.png" id="1_yqorp"]
-[ext_resource type="Texture2D" uid="uid://dexnys85ogwmd" path="res://assets/sprites/play_button.png" id="2_0ykhv"]
-[ext_resource type="Texture2D" uid="uid://7pspwey4c45x" path="res://assets/sprites/options_button.png" id="3_2wh52"]
-[ext_resource type="Texture2D" uid="uid://csijr6oc0fnhh" path="res://assets/sprites/exit_button.png" id="4_ow34m"]
+[ext_resource type="Texture2D" uid="uid://fpgv4tv7325t" path="res://assets/sprites/menu/title.png" id="2_l72w3"]
+[ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_2wh52"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1479972651]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l72w3")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1008000098]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,69 +21,150 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.38039216, 0.6, 1, 1)
+metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="TextureRect" parent="."]
+[node name="MenuContainer" type="AspectRatioContainer" parent="." unique_id=1076020760]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -400.0
-offset_right = 2.0
-offset_bottom = -150.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_yqorp")
-stretch_mode = 5
-
-[node name="Buttons" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -100.0
-offset_bottom = 350.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 50
-alignment = 1
-
-[node name="Play" type="TextureButton" parent="Buttons"]
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("2_0ykhv")
-stretch_mode = 5
-
-[node name="Options" type="TextureButton" parent="Buttons"]
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("3_2wh52")
-stretch_mode = 5
-
-[node name="Exit" type="TextureButton" parent="Buttons"]
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("4_ow34m")
-stretch_mode = 5
-
-[node name="Version" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -50.0
-offset_right = -9.0
-offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+metadata/_edit_use_anchors_ = true
+
+[node name="Menu" type="Control" parent="MenuContainer" unique_id=1568594531]
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="MenuContainer/Menu" unique_id=680521637]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1388889
+anchor_right = 1.0
+anchor_bottom = 0.3611111
+offset_top = -0.0040512085
+offset_bottom = -0.004058838
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_l72w3")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="MainButtons" type="HBoxContainer" parent="MenuContainer/Menu" unique_id=1343264716]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046875
+anchor_top = 0.5555556
+anchor_right = 0.953125
+anchor_bottom = 0.7222222
+offset_top = 0.00061035156
+offset_bottom = 0.0006713867
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 75
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Play" type="Button" parent="MenuContainer/Menu/MainButtons" unique_id=761524888]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 42
+text = "Jugar"
+
+[node name="Options" type="Button" parent="MenuContainer/Menu/MainButtons" unique_id=647385535]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 42
+text = "Opciones"
+
+[node name="Exit" type="Button" parent="MenuContainer/Menu/MainButtons" unique_id=1631482364]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 42
+text = "Salir"
+
+[node name="PlayMenu" type="Control" parent="MenuContainer/Menu" unique_id=1387161427]
+visible = false
+anchors_preset = 0
+offset_top = -0.0056152344
+offset_right = 40.0
+offset_bottom = 39.994385
+
+[node name="PlayButtons" type="VBoxContainer" parent="MenuContainer/Menu/PlayMenu" unique_id=899837347]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OptionsMenu" type="Control" parent="MenuContainer/Menu" unique_id=355930823]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -537.0
+offset_top = -401.0
+offset_right = 537.0
+offset_bottom = 401.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuContainer/Menu/OptionsMenu" unique_id=792112076]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsTitle" type="Label" parent="MenuContainer/Menu/OptionsMenu" unique_id=326576950]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_right = 36.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Opciones"
+horizontal_alignment = 1
+
+[node name="OptionsButtons" type="VBoxContainer" parent="MenuContainer/Menu/OptionsMenu" unique_id=896569899]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -306.0
+offset_right = 16.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResButton" type="OptionButton" parent="MenuContainer/Menu/OptionsMenu/OptionsButtons" unique_id=2038672434]
+layout_mode = 2
+
+[node name="Version" type="Label" parent="." unique_id=1176643071]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.99375
+anchor_top = 0.95444447
+anchor_right = 0.994375
+anchor_bottom = 0.99
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MenuContainer/Menu/MainButtons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MenuContainer/Menu/MainButtons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MenuContainer/Menu/MainButtons/Exit" to="." method="_on_exit_pressed"]

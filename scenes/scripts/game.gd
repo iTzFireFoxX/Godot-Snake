@@ -15,8 +15,6 @@ var win: bool
 
 var rng = RandomNumberGenerator.new() # Generación de números aleatorios
 
-# Definir sprites
-var apple_sprite = preload("res://assets/sprites/apple.png")
 
 func _ready():
 	win = false
@@ -56,7 +54,7 @@ func _process(delta):
 		if win == true:
 			print("ganaste")
 			get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
-		if snake.snake.size() >= (map_size.x * map_size.y):
+		elif snake.snake.size() >= (map_size.x * map_size.y):
 			apple.position = returnSpritePos(apple_pos)
 			win = true
 
