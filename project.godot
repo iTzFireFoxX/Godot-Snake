@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Godot Snake"
 config/description="El clásico juego Snake recreado desde cero en Godot"
-config/version="0.1.0-beta"
+config/version="0.1.1-beta"
 run/main_scene="uid://c8qi8w4r0wuew"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -25,7 +25,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
-window/size/resizable=false
+window/stretch/mode="viewport"
+window/version=""
 
 [input]
 
