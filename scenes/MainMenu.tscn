@@ -23,65 +23,82 @@ grow_vertical = 2
 color = Color(0.38039216, 0.6, 1, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="TextureRect" parent="." unique_id=680521637]
+[node name="MenuContainer" type="AspectRatioContainer" parent="." unique_id=1076020760]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+metadata/_edit_use_anchors_ = true
+
+[node name="Menu" type="Control" parent="MenuContainer" unique_id=1568594531]
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="MenuContainer/Menu" unique_id=680521637]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.1388889
 anchor_right = 1.0
 anchor_bottom = 0.3611111
+offset_top = -0.0040512085
+offset_bottom = -0.004058838
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_l72w3")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="MainButtons" type="HBoxContainer" parent="." unique_id=1343264716]
+[node name="MainButtons" type="HBoxContainer" parent="MenuContainer/Menu" unique_id=1343264716]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.046875
 anchor_top = 0.5555556
 anchor_right = 0.953125
 anchor_bottom = 0.7222222
-offset_top = -3.0517578e-05
+offset_top = 0.00061035156
+offset_bottom = 0.0006713867
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 75
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Play" type="Button" parent="MainButtons" unique_id=761524888]
+[node name="Play" type="Button" parent="MenuContainer/Menu/MainButtons" unique_id=761524888]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 42
 text = "Jugar"
 
-[node name="Options" type="Button" parent="MainButtons" unique_id=647385535]
+[node name="Options" type="Button" parent="MenuContainer/Menu/MainButtons" unique_id=647385535]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 42
 text = "Opciones"
 
-[node name="Exit" type="Button" parent="MainButtons" unique_id=1631482364]
+[node name="Exit" type="Button" parent="MenuContainer/Menu/MainButtons" unique_id=1631482364]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 42
 text = "Salir"
 
-[node name="PlayMenu" type="Control" parent="." unique_id=1387161427]
+[node name="PlayMenu" type="Control" parent="MenuContainer/Menu" unique_id=1387161427]
 visible = false
 anchors_preset = 0
+offset_top = -0.0056152344
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 39.994385
 
-[node name="PlayButtons" type="VBoxContainer" parent="PlayMenu" unique_id=899837347]
+[node name="PlayButtons" type="VBoxContainer" parent="MenuContainer/Menu/PlayMenu" unique_id=899837347]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="OptionsMenu" type="Control" parent="." unique_id=355930823]
+[node name="OptionsMenu" type="Control" parent="MenuContainer/Menu" unique_id=355930823]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -96,7 +113,7 @@ offset_bottom = 401.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="OptionsMenu" unique_id=792112076]
+[node name="Panel" type="Panel" parent="MenuContainer/Menu/OptionsMenu" unique_id=792112076]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,7 +121,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionsTitle" type="Label" parent="OptionsMenu" unique_id=326576950]
+[node name="OptionsTitle" type="Label" parent="MenuContainer/Menu/OptionsMenu" unique_id=326576950]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -116,7 +133,7 @@ grow_horizontal = 2
 text = "Opciones"
 horizontal_alignment = 1
 
-[node name="OptionsButtons" type="VBoxContainer" parent="OptionsMenu" unique_id=896569899]
+[node name="OptionsButtons" type="VBoxContainer" parent="MenuContainer/Menu/OptionsMenu" unique_id=896569899]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -130,7 +147,7 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResButton" type="OptionButton" parent="OptionsMenu/OptionsButtons" unique_id=2038672434]
+[node name="ResButton" type="OptionButton" parent="MenuContainer/Menu/OptionsMenu/OptionsButtons" unique_id=2038672434]
 layout_mode = 2
 
 [node name="Version" type="Label" parent="." unique_id=1176643071]
@@ -148,6 +165,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MainButtons/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MainButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MenuContainer/Menu/MainButtons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MenuContainer/Menu/MainButtons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MenuContainer/Menu/MainButtons/Exit" to="." method="_on_exit_pressed"]
