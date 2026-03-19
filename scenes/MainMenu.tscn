@@ -36,50 +36,45 @@ metadata/_edit_use_anchors_ = true
 [node name="MainMenuControl" type="Control" parent="MainMenuARContainer" unique_id=1568594531]
 layout_mode = 2
 
-[node name="Title" type="TextureRect" parent="MainMenuARContainer/MainMenuControl" unique_id=680521637]
+[node name="GameTitleTexture" type="TextureRect" parent="MainMenuARContainer/MainMenuControl" unique_id=680521637]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.1388889
+anchor_top = 0.1
 anchor_right = 1.0
-anchor_bottom = 0.3611111
-offset_top = -0.0040512085
-offset_bottom = -0.004058838
+anchor_bottom = 0.4
 grow_horizontal = 2
-grow_vertical = 2
 texture = ExtResource("2_l72w3")
 stretch_mode = 5
-metadata/_edit_use_anchors_ = true
 
 [node name="MainButtons" type="HBoxContainer" parent="MainMenuARContainer/MainMenuControl" unique_id=1343264716]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.046875
-anchor_top = 0.5555556
-anchor_right = 0.953125
-anchor_bottom = 0.7222222
-offset_top = 0.00061035156
-offset_bottom = 0.0006713867
+anchor_left = 0.03
+anchor_top = 0.55000067
+anchor_right = 0.97
+anchor_bottom = 0.7500008
+offset_top = 3.0517578e-05
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 75
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Play" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=761524888]
+[node name="PlayConfigButton" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=761524888]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 42
 text = "Jugar"
 
-[node name="Options" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=647385535]
+[node name="OptionsButton" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=647385535]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 42
 text = "Opciones"
 
-[node name="Exit" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=1631482364]
+[node name="ExitButton" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=1631482364]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -90,59 +85,114 @@ text = "Salir"
 visible = false
 layout_mode = 2
 
-[node name="PlayButtons" type="VBoxContainer" parent="MainMenuARContainer/PlayMenuControl" unique_id=899837347]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PlayConfigPanel" type="Panel" parent="MainMenuARContainer/PlayMenuControl" unique_id=1370680137]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.05
+anchor_right = 0.97
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayConfigTitle" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=251011335]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.03
+anchor_right = 0.5
+anchor_bottom = 0.03
+offset_left = -352.0
+offset_right = 352.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 32
+text = "Configuración del juego"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=996872414]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.96
+anchor_right = 0.02
+anchor_bottom = 0.96
+offset_top = -64.0
+offset_right = 264.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 32
+text = "< Volver"
+
+[node name="PlayButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=647984481]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.98
+anchor_top = 0.96
+anchor_right = 0.98
+anchor_bottom = 0.96
+offset_left = -264.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 32
+text = "Jugar >"
 
 [node name="OptionsMenuControl" type="Control" parent="MainMenuARContainer" unique_id=355930823]
 visible = false
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="MainMenuARContainer/OptionsMenuControl" unique_id=792112076]
+[node name="OptionsPanel" type="Panel" parent="MainMenuARContainer/OptionsMenuControl" unique_id=792112076]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.05
+anchor_right = 0.97
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="OptionsTitle" type="Label" parent="MainMenuARContainer/OptionsMenuControl" unique_id=326576950]
+[node name="OptionsTitle" type="Label" parent="MainMenuARContainer/OptionsMenuControl/OptionsPanel" unique_id=326576950]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.03
 anchor_right = 0.5
-offset_left = -36.0
-offset_right = 36.0
-offset_bottom = 23.0
+anchor_bottom = 0.03
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 32.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 32
 text = "Opciones"
 horizontal_alignment = 1
 
-[node name="OptionsButtons" type="VBoxContainer" parent="MainMenuARContainer/OptionsMenuControl" unique_id=896569899]
+[node name="BackButton" type="Button" parent="MainMenuARContainer/OptionsMenuControl/OptionsPanel" unique_id=496377502]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -306.0
-offset_right = 16.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ResButton" type="OptionButton" parent="MainMenuARContainer/OptionsMenuControl/OptionsButtons" unique_id=2038672434]
-layout_mode = 2
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.96
+anchor_right = 0.02
+anchor_bottom = 0.96
+offset_top = -64.0
+offset_right = 264.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 32
+text = "< Volver"
 
 [node name="Version" type="Label" parent="." unique_id=1176643071]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.99375
-anchor_top = 0.95444447
-anchor_right = 0.994375
-anchor_bottom = 0.99
+anchor_left = 0.993125
+anchor_top = 0.9622222
+anchor_right = 0.99375
+anchor_bottom = 0.98888886
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -151,6 +201,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/PlayConfigButton" to="." method="_on_play_config_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/OptionsButton" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/OptionsMenuControl/OptionsPanel/BackButton" to="." method="_on_back_button_pressed"]
