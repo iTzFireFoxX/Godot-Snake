@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://fpgv4tv7325t" path="res://assets/sprites/menu/title.png" id="2_l72w3"]
 [ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_2wh52"]
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_2wh52"]
+
 [node name="MainMenu" type="Control" unique_id=1479972651]
 layout_mode = 3
 anchors_preset = 15
@@ -34,6 +36,7 @@ ratio = 1.7778
 metadata/_edit_use_anchors_ = true
 
 [node name="MainMenuControl" type="Control" parent="MainMenuARContainer" unique_id=1568594531]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="GameTitleTexture" type="TextureRect" parent="MainMenuARContainer/MainMenuControl" unique_id=680521637]
@@ -49,14 +52,14 @@ stretch_mode = 5
 [node name="MainButtons" type="HBoxContainer" parent="MainMenuARContainer/MainMenuControl" unique_id=1343264716]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.03
+anchor_left = 0.05
 anchor_top = 0.55000067
-anchor_right = 0.97
+anchor_right = 0.95
 anchor_bottom = 0.7500008
 offset_top = 3.0517578e-05
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 75
+theme_override_constants/separation = 96
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -82,6 +85,7 @@ theme_override_font_sizes/font_size = 42
 text = "Salir"
 
 [node name="PlayMenuControl" type="Control" parent="MainMenuARContainer" unique_id=1387161427]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
@@ -96,19 +100,49 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="PlayConfigTabButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=541766929]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.15
+anchor_right = 0.98
+anchor_bottom = 0.22
+grow_horizontal = 2
+theme_override_constants/separation = 64
+
+[node name="GameTabButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayConfigTabButtons" unique_id=1567237446]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 24
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2wh52")
+text = "Juego"
+
+[node name="AppearanceTabButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayConfigTabButtons" unique_id=603692197]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 24
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2wh52")
+text = "Apariencia"
+
 [node name="PlayConfigTitle" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=251011335]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.03
+anchor_top = 0.04
 anchor_right = 0.5
-anchor_bottom = 0.03
+anchor_bottom = 0.04
 offset_left = -352.0
 offset_right = 352.0
 offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 36
 text = "Configuración del juego"
 horizontal_alignment = 1
 
@@ -142,6 +176,7 @@ theme_override_font_sizes/font_size = 32
 text = "Jugar >"
 
 [node name="OptionsMenuControl" type="Control" parent="MainMenuARContainer" unique_id=355930823]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
@@ -160,15 +195,15 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.03
+anchor_top = 0.04
 anchor_right = 0.5
-anchor_bottom = 0.03
+anchor_bottom = 0.04
 offset_left = -128.0
 offset_right = 128.0
 offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 36
 text = "Opciones"
 horizontal_alignment = 1
 
@@ -186,20 +221,24 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 32
 text = "< Volver"
 
-[node name="Version" type="Label" parent="." unique_id=1176643071]
+[node name="VersionLabel" type="Label" parent="." unique_id=1176643071]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.993125
-anchor_top = 0.9622222
-anchor_right = 0.99375
-anchor_bottom = 0.98888886
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -24.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/PlayConfigButton" to="." method="_on_play_config_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/OptionsButton" to="." method="_on_options_pressed"]

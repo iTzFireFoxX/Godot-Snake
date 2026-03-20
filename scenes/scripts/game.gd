@@ -17,12 +17,15 @@ var rng = RandomNumberGenerator.new() # Generación de números aleatorios
 
 
 func _ready():
+
+	map_size = GameSettings.map_size
+	game_vel = GameSettings.game_vel
+
 	win = false
 	snake = $Snake
 	apple = $Apple
-	map_size = Vector2i(10, 10) # Definir tamaño del mapa (temporal)
 	cell_size = 16 # Definir tamaño de las casillas en pixeles
-	game_vel = 0.4 # Definir el intervalo de velocidad en segundos
+	
 	call_deferred("drawApple")
 	queue_redraw()
 
