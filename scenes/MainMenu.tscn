@@ -409,7 +409,7 @@ theme_override_font_sizes/font_size = 20
 toggle_mode = true
 keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_l72w3")
-text = "Muy Rápido"
+text = "Muy rápido"
 
 [node name="CustomVelButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons" unique_id=1590833033]
 unique_name_in_owner = true
@@ -447,7 +447,7 @@ offset_bottom = 11.5
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
-text = "Bordes traspasables (WIP)"
+text = "Bordes traspasables"
 
 [node name="PassableWallsButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl" unique_id=2066434596]
 layout_mode = 1
@@ -606,6 +606,8 @@ vertical_alignment = 1
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons/FastVelButton" to="." method="_on_fast_vel_button_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons/VeryFastVelButton" to="." method="_on_very_fast_vel_button_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons/CustomVelButton" to="." method="_on_custom_vel_button_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl/PassableWallsButtons/PWYesButton" to="." method="_on_pw_yes_button_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl/PassableWallsButtons/PWNoButton" to="." method="_on_pw_no_button_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/OptionsMenuControl/OptionsPanel/BackButton" to="." method="_on_back_button_pressed"]

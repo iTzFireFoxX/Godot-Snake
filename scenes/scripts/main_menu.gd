@@ -93,6 +93,7 @@ func _on_very_easy_diff_button_pressed() -> void:
 	SlowVelButton.button_pressed = true
 	_on_slow_vel_button_pressed()
 	PWYesButton.button_pressed = true
+	_on_pw_yes_button_pressed()
 
 
 func _on_easy_diff_button_pressed() -> void:
@@ -102,7 +103,8 @@ func _on_easy_diff_button_pressed() -> void:
 	NormalVelButton.button_pressed = true
 	_on_normal_vel_button_pressed()
 	PWYesButton.button_pressed = true
-
+	_on_pw_yes_button_pressed()
+	
 
 func _on_normal_diff_button_pressed() -> void:
 	toggleEditablePlayConfig(false)
@@ -111,6 +113,7 @@ func _on_normal_diff_button_pressed() -> void:
 	FastVelButton.button_pressed = true
 	_on_fast_vel_button_pressed()
 	PWNoButton.button_pressed = true
+	_on_pw_no_button_pressed()
 
 
 func _on_hard_diff_button_pressed() -> void:
@@ -120,6 +123,8 @@ func _on_hard_diff_button_pressed() -> void:
 	VeryFastVelButton.button_pressed = true
 	_on_very_fast_vel_button_pressed()
 	PWNoButton.button_pressed = true
+	_on_pw_no_button_pressed()
+
 
 func toggleEditablePlayConfig(toggle: bool) -> void:
 	WidhtInput.editable = toggle
@@ -152,17 +157,29 @@ func _on_slow_vel_button_pressed() -> void:
 	CustomVelInput.editable = false
 	CustomVelInput.text = "1"
 
+
 func _on_normal_vel_button_pressed() -> void:
 	CustomVelInput.editable = false
 	CustomVelInput.text = "0.5"
+
 
 func _on_fast_vel_button_pressed() -> void:
 	CustomVelInput.editable = false
 	CustomVelInput.text = "0.25"
 
+
 func _on_very_fast_vel_button_pressed() -> void:
 	CustomVelInput.editable = false
 	CustomVelInput.text = "0.1"
 
+
 func _on_custom_vel_button_pressed() -> void:
 	CustomVelInput.editable = true
+
+
+func _on_pw_yes_button_pressed() -> void:
+	GameSettings.passable_walls = true
+
+
+func _on_pw_no_button_pressed() -> void:
+	GameSettings.passable_walls = false

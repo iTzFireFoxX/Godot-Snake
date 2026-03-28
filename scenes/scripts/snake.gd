@@ -42,17 +42,20 @@ func returnUpdatedPos(pos, dir): # Retorna la posicion actualizada de una parte 
 
 	updated_pos += dir
 
-	# Dar la vuelta por los lados
-	if updated_pos.x > game.map_size.x - 1:
-		updated_pos.x = 0
-	elif updated_pos.x < 0:
-		updated_pos.x = game.map_size.x - 1
+	# Comprobacion de bordes traspasables
+	if GameSettings.passable_walls == true:
 
-	# Dar la vuelta por arriba y abajo
-	if updated_pos.y > game.map_size.y - 1:
-		updated_pos.y = 0
-	elif updated_pos.y < 0:
-		updated_pos.y = game.map_size.y - 1
+		# Dar la vuelta por los lados
+		if updated_pos.x > game.map_size.x - 1:
+			updated_pos.x = 0
+		elif updated_pos.x < 0:
+			updated_pos.x = game.map_size.x - 1
+
+		# Dar la vuelta por arriba y abajo
+		if updated_pos.y > game.map_size.y - 1:
+			updated_pos.y = 0
+		elif updated_pos.y < 0:
+			updated_pos.y = game.map_size.y - 1
 
 	return updated_pos
 

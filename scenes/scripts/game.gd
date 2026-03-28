@@ -62,7 +62,7 @@ func _process(delta):
 			win = true
 
 		# Perder
-		elif snake.snake[0][0] in snake_pos:
+		elif snake.snake[0][0] in snake_pos or ((snake.snake[0][0].x >= map_size.x or snake.snake[0][0].x < 0 or snake.snake[0][0].y >= map_size.y or snake.snake[0][0].y < 0) and GameSettings.passable_walls == false): #XD
 			print("perdiste")
 			get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 		
