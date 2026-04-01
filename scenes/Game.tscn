@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bietb16ebyvry"]
 
-[ext_resource type="Script" uid="uid://bmnugxcdmw3dp" path="res://scenes/scripts/game.gd" id="1_cpr0p"]
-[ext_resource type="Script" uid="uid://bmnsd71ew565l" path="res://scenes/scripts/snake.gd" id="2_78awf"]
+[ext_resource type="Script" uid="uid://bmnugxcdmw3dp" path="res://scripts/game.gd" id="1_cpr0p"]
+[ext_resource type="Script" uid="uid://bmnsd71ew565l" path="res://scripts/snake.gd" id="2_78awf"]
 [ext_resource type="Texture2D" uid="uid://clct67ssevf6k" path="res://assets/sprites/snake/snake_head.png" id="3_s0nni"]
-[ext_resource type="Script" uid="uid://jsai3mb7pw41" path="res://scenes/scripts/camera.gd" id="4_78awf"]
+[ext_resource type="Script" uid="uid://jsai3mb7pw41" path="res://scripts/camera.gd" id="4_78awf"]
 [ext_resource type="Texture2D" uid="uid://ucjc4u6ud223" path="res://assets/sprites/food/apple.png" id="5_s0nni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aug50"]

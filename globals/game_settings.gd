@@ -6,6 +6,6 @@ var map_size: Vector2i
 var game_vel: float
 var passable_walls: bool
 
-# Config de apariencia
 
+# Config de apariencia
 var map_color: Array[Color]

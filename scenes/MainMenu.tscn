@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://hpkwrv04k2gf"]
 
-[ext_resource type="Script" uid="uid://bm0u6laj2hv13" path="res://scenes/scripts/main_menu.gd" id="1_l72w3"]
+[ext_resource type="Script" uid="uid://bm0u6laj2hv13" path="res://scripts/main_menu.gd" id="1_l72w3"]
 [ext_resource type="Texture2D" uid="uid://fpgv4tv7325t" path="res://assets/sprites/menu/title.png" id="2_l72w3"]
+[ext_resource type="Script" uid="uid://drqb1x7alnj82" path="res://scripts/main_menu_control.gd" id="2_ow34m"]
 [ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_2wh52"]
+[ext_resource type="Script" uid="uid://bgvi56x78oiwp" path="res://scripts/play_menu_control.gd" id="5_l72w3"]
+[ext_resource type="Script" uid="uid://gqdhc6b67edp" path="res://scripts/options_menu_control.gd" id="6_826wr"]
+[ext_resource type="Script" uid="uid://cl1r5gumwewtv" path="res://scripts/game_tab_scroll.gd" id="6_ucygd"]
+[ext_resource type="Script" uid="uid://cti5qnc633pto" path="res://scripts/appearance_tab_scroll.gd" id="7_mipys"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_2wh52"]
 
@@ -44,8 +49,9 @@ metadata/_edit_use_anchors_ = true
 [node name="MainMenuControl" type="Control" parent="MainMenuARContainer" unique_id=1568594531]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("2_ow34m")
 
-[node name="GameTitleTexture" type="TextureRect" parent="MainMenuARContainer/MainMenuControl" unique_id=680521637]
+[node name="GameTitle" type="TextureRect" parent="MainMenuARContainer/MainMenuControl" unique_id=680521637]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.1
@@ -69,21 +75,21 @@ theme_override_constants/separation = 96
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayConfigButton" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=761524888]
+[node name="PlayMenu" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=761524888]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 42
 text = "Jugar"
 
-[node name="OptionsButton" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=647385535]
+[node name="OptionsMenu" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=647385535]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 42
 text = "Opciones"
 
-[node name="ExitButton" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=1631482364]
+[node name="Exit" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=1631482364]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -94,8 +100,9 @@ text = "Salir"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+script = ExtResource("5_l72w3")
 
-[node name="PlayConfigPanel" type="Panel" parent="MainMenuARContainer/PlayMenuControl" unique_id=1370680137]
+[node name="PlayMenuPanel" type="Panel" parent="MainMenuARContainer/PlayMenuControl" unique_id=1370680137]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.03
@@ -106,7 +113,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayConfigTitle" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=251011335]
+[node name="PlayMenuTitle" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=251011335]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -122,7 +129,7 @@ theme_override_font_sizes/font_size = 36
 text = "Configuración del juego"
 horizontal_alignment = 1
 
-[node name="PlayConfigTabButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=541766929]
+[node name="PlayMenuTabButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=541766929]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -132,7 +139,7 @@ anchor_bottom = 0.22
 grow_horizontal = 2
 theme_override_constants/separation = 64
 
-[node name="GameTabButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayConfigTabButtons" unique_id=1567237446]
+[node name="GameTab" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/PlayMenuTabButtons" unique_id=1567237446]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -142,7 +149,7 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_2wh52")
 text = "Juego"
 
-[node name="AppearanceTabButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayConfigTabButtons" unique_id=603692197]
+[node name="AppearanceTab" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/PlayMenuTabButtons" unique_id=603692197]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -152,7 +159,7 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_2wh52")
 text = "Apariencia (WIP)"
 
-[node name="TabMenuPanel" type="Panel" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=1706597331]
+[node name="TabMenuPanel" type="Panel" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=1706597331]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -162,7 +169,7 @@ anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameTabScroll" type="ScrollContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel" unique_id=2133284615]
+[node name="GameTabScroll" type="ScrollContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel" unique_id=2133284615]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -172,18 +179,19 @@ anchor_right = 0.98
 anchor_bottom = 0.96
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_ucygd")
 metadata/_edit_use_anchors_ = true
 
-[node name="GameTabVBContainer" type="VBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll" unique_id=1741865024]
+[node name="GameTabVBContainer" type="VBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" unique_id=1741865024]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DifficultyControl" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=2006662176]
+[node name="DifficultyOption" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=2006662176]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DifficultyLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl" unique_id=253131674]
+[node name="DifficultyLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption" unique_id=253131674]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
@@ -198,7 +206,7 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 text = "Dificultad"
 
-[node name="DifficultyButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl" unique_id=241368797]
+[node name="DifficultyButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption" unique_id=241368797]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.99
@@ -212,7 +220,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="VeryEasyDiffButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons" unique_id=1731417456]
+[node name="VeryEasyDiff" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=1731417456]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -222,7 +230,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_ow34m")
 text = "Muy fácil"
 
-[node name="EasyDiffButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons" unique_id=164576189]
+[node name="EasyDiff" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=164576189]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -232,7 +240,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_ow34m")
 text = "Fácil"
 
-[node name="NormalDiffButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons" unique_id=1097048713]
+[node name="NormalDiff" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=1097048713]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -242,7 +250,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_ow34m")
 text = "Normal"
 
-[node name="HardDiffButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons" unique_id=709444487]
+[node name="HardDiff" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=709444487]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -252,7 +260,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_ow34m")
 text = "Difícil"
 
-[node name="CustomDiffButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons" unique_id=634893588]
+[node name="CustomDiff" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=634893588]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -262,11 +270,11 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_ow34m")
 text = "Person."
 
-[node name="MapSizeControl" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=1843055155]
+[node name="MapSizeOption" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=1843055155]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MapSizeLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeControl" unique_id=1330358527]
+[node name="MapSizeLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption" unique_id=1330358527]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
@@ -281,7 +289,7 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 text = "Tamaño del mapa"
 
-[node name="MapSizeLineEdits" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeControl" unique_id=369628695]
+[node name="MapSizeInputs" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption" unique_id=369628695]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.99
@@ -295,19 +303,19 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 64
 
-[node name="WidthHBContainer" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeControl/MapSizeLineEdits" unique_id=584203565]
+[node name="WidthHBContainer" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs" unique_id=584203565]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="WidthLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeControl/MapSizeLineEdits/WidthHBContainer" unique_id=1496839309]
+[node name="WidthLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer" unique_id=1496839309]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 text = "Ancho"
 
-[node name="WidthInput" type="LineEdit" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeControl/MapSizeLineEdits/WidthHBContainer" unique_id=9441924]
+[node name="WidthInput" type="LineEdit" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer" unique_id=9441924]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -316,19 +324,19 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 max_length = 2
 
-[node name="HeightHBContainer" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeControl/MapSizeLineEdits" unique_id=1999945956]
+[node name="HeightHBContainer" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs" unique_id=1999945956]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="HeightLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeControl/MapSizeLineEdits/HeightHBContainer" unique_id=627103430]
+[node name="HeightLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer" unique_id=627103430]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 text = "Alto"
 
-[node name="HeightInput" type="LineEdit" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeControl/MapSizeLineEdits/HeightHBContainer" unique_id=635315021]
+[node name="HeightInput" type="LineEdit" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer" unique_id=635315021]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -337,11 +345,11 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 max_length = 2
 
-[node name="GameVelControl" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=2061727946]
+[node name="GameVelOption" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=2061727946]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GameVelLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl" unique_id=640816738]
+[node name="GameVelLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption" unique_id=640816738]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
@@ -356,7 +364,7 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 text = "Velocidad del juego"
 
-[node name="GameVelButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl" unique_id=402752647]
+[node name="GameVelButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption" unique_id=402752647]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.99
@@ -370,7 +378,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="SlowVelButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons" unique_id=1558899962]
+[node name="SlowVel" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=1558899962]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -380,7 +388,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_l72w3")
 text = "Lento"
 
-[node name="NormalVelButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons" unique_id=2000705527]
+[node name="NormalVel" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=2000705527]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -390,7 +398,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_l72w3")
 text = "Normal"
 
-[node name="FastVelButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons" unique_id=857960165]
+[node name="FastVel" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=857960165]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -400,7 +408,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_l72w3")
 text = "Rápido"
 
-[node name="VeryFastVelButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons" unique_id=1619554208]
+[node name="VeryFastVel" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=1619554208]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -410,7 +418,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_l72w3")
 text = "Muy rápido"
 
-[node name="CustomVelButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons" unique_id=1590833033]
+[node name="CustomVel" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=1590833033]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
@@ -420,7 +428,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_l72w3")
 text = "Person."
 
-[node name="CustomVelInput" type="LineEdit" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons" unique_id=197550338]
+[node name="CustomVelInput" type="LineEdit" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=197550338]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -429,11 +437,11 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 max_length = 4
 
-[node name="PassableWallsControl" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=851830492]
+[node name="PassableWallsOption" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=851830492]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PassableWallsLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl" unique_id=782882233]
+[node name="PassableWallsLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption" unique_id=782882233]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
@@ -448,7 +456,7 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 text = "Bordes traspasables"
 
-[node name="PassableWallsButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl" unique_id=2066434596]
+[node name="PassableWallsButtons" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption" unique_id=2066434596]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.99
@@ -462,7 +470,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="PWYesButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl/PassableWallsButtons" unique_id=1454388897]
+[node name="PWYes" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption/PassableWallsButtons" unique_id=1454388897]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -473,7 +481,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_826wr")
 text = "Si"
 
-[node name="PWNoButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl/PassableWallsButtons" unique_id=232863086]
+[node name="PWNo" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption/PassableWallsButtons" unique_id=232863086]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -484,7 +492,7 @@ keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_826wr")
 text = "No"
 
-[node name="AppearanceTabScroll" type="ScrollContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel" unique_id=357102088]
+[node name="AppearanceTabScroll" type="ScrollContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel" unique_id=357102088]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -494,18 +502,19 @@ anchor_right = 0.98
 anchor_bottom = 0.96
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("7_mipys")
 metadata/_edit_use_anchors_ = true
 
-[node name="AppearanceTabVBContainer" type="VBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll" unique_id=775439407]
+[node name="AppearanceTabVBContainer" type="VBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll" unique_id=775439407]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MapColorControl" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer" unique_id=1750301013]
+[node name="MapColorOption" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer" unique_id=1750301013]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MapColorLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl" unique_id=2012499382]
+[node name="MapColorLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption" unique_id=2012499382]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
@@ -520,7 +529,7 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
 text = "Color del mapa"
 
-[node name="MapColorHBContainer" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl" unique_id=283983863]
+[node name="MapColorHBContainer" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption" unique_id=283983863]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.99
@@ -534,7 +543,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="MapColorsOpButton" type="OptionButton" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer" unique_id=196404644]
+[node name="MapColorsOptions" type="OptionButton" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=196404644]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -548,7 +557,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Rojo"
 popup/item_2/id = 2
 
-[node name="ColorPreviewGContainer" type="GridContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer" unique_id=1420153061]
+[node name="ColorPreview" type="GridContainer" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=1420153061]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
@@ -557,23 +566,23 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 2
 
-[node name="CR1" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/ColorPreviewGContainer" unique_id=925494578]
+[node name="Rect1" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=925494578]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="CR2" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/ColorPreviewGContainer" unique_id=1106608904]
+[node name="Rect2" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=1106608904]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="CR3" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/ColorPreviewGContainer" unique_id=90873271]
+[node name="Rect3" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=90873271]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="CR4" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/ColorPreviewGContainer" unique_id=942975798]
+[node name="Rect4" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=942975798]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=996872414]
+[node name="Back" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=996872414]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -587,7 +596,7 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 26
 text = "< Volver"
 
-[node name="PlayButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=647984481]
+[node name="Play" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=647984481]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.98
@@ -606,8 +615,9 @@ text = "Jugar >"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+script = ExtResource("6_826wr")
 
-[node name="OptionsPanel" type="Panel" parent="MainMenuARContainer/OptionsMenuControl" unique_id=792112076]
+[node name="OptionsMenuPanel" type="Panel" parent="MainMenuARContainer/OptionsMenuControl" unique_id=792112076]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.03
@@ -618,7 +628,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="OptionsTitle" type="Label" parent="MainMenuARContainer/OptionsMenuControl/OptionsPanel" unique_id=326576950]
+[node name="OptionsMenuTitle" type="Label" parent="MainMenuARContainer/OptionsMenuControl/OptionsMenuPanel" unique_id=326576950]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -634,7 +644,7 @@ theme_override_font_sizes/font_size = 36
 text = "Opciones (WIP)"
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="MainMenuARContainer/OptionsMenuControl/OptionsPanel" unique_id=496377502]
+[node name="Back" type="Button" parent="MainMenuARContainer/OptionsMenuControl/OptionsMenuPanel" unique_id=496377502]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -648,7 +658,7 @@ theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 26
 text = "< Volver"
 
-[node name="VersionLabel" type="Label" parent="." unique_id=1176643071]
+[node name="Version" type="Label" parent="." unique_id=1176643071]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -667,24 +677,32 @@ theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/PlayConfigButton" to="." method="_on_play_config_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/OptionsButton" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/ExitButton" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayConfigTabButtons/GameTabButton" to="." method="_on_game_tab_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayConfigTabButtons/AppearanceTabButton" to="." method="_on_appearance_tab_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons/VeryEasyDiffButton" to="." method="_on_very_easy_diff_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons/EasyDiffButton" to="." method="_on_easy_diff_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons/NormalDiffButton" to="." method="_on_normal_diff_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons/HardDiffButton" to="." method="_on_hard_diff_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyControl/DifficultyButtons/CustomDiffButton" to="." method="_on_custom_diff_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons/SlowVelButton" to="." method="_on_slow_vel_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons/NormalVelButton" to="." method="_on_normal_vel_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons/FastVelButton" to="." method="_on_fast_vel_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons/VeryFastVelButton" to="." method="_on_very_fast_vel_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons/CustomVelButton" to="." method="_on_custom_vel_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl/PassableWallsButtons/PWYesButton" to="." method="_on_pw_yes_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl/PassableWallsButtons/PWNoButton" to="." method="_on_pw_no_button_pressed"]
-[connection signal="item_selected" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/MapColorsOpButton" to="." method="_on_map_colors_op_button_item_selected"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MainMenuARContainer/OptionsMenuControl/OptionsPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/PlayMenu" to="MainMenuARContainer/MainMenuControl" method="_on_play_menu_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/PlayMenu" to="MainMenuARContainer/PlayMenuControl" method="_on_play_menu_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/PlayMenu" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_play_menu_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/PlayMenu" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll" method="_on_play_menu_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/OptionsMenu" to="MainMenuARContainer/MainMenuControl" method="_on_options_menu_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/MainMenuControl/MainButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/PlayMenuTabButtons/GameTab" to="MainMenuARContainer/PlayMenuControl" method="_on_game_tab_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/PlayMenuTabButtons/AppearanceTab" to="MainMenuARContainer/PlayMenuControl" method="_on_appearance_tab_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/VeryEasyDiff" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_very_easy_diff_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/EasyDiff" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_easy_diff_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/NormalDiff" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_normal_diff_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/HardDiff" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_hard_diff_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/CustomDiff" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_custom_diff_pressed"]
+[connection signal="text_changed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer/WidthInput" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_width_input_text_changed"]
+[connection signal="text_changed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer/HeightInput" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_height_input_text_changed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/SlowVel" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_slow_vel_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/NormalVel" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_normal_vel_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/FastVel" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_fast_vel_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/VeryFastVel" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_very_fast_vel_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/CustomVel" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_custom_vel_pressed"]
+[connection signal="text_changed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/CustomVelInput" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_custom_vel_input_text_changed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWYes" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_pw_yes_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWNo" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_pw_no_pressed"]
+[connection signal="item_selected" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/MapColorsOptions" to="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll" method="_on_map_colors_options_item_selected"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/Back" to="MainMenuARContainer/MainMenuControl" method="_on_back_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/Back" to="MainMenuARContainer/PlayMenuControl" method="_on_back_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayMenuPanel/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/OptionsMenuControl/OptionsMenuPanel/Back" to="MainMenuARContainer/MainMenuControl" method="_on_back_pressed"]
+[connection signal="pressed" from="MainMenuARContainer/OptionsMenuControl/OptionsMenuPanel/Back" to="MainMenuARContainer/OptionsMenuControl" method="_on_back_pressed"]
