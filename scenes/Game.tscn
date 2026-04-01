@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bietb16ebyvry"]
+[gd_scene format=3 uid="uid://bietb16ebyvry"]
 
 [ext_resource type="Script" uid="uid://bmnugxcdmw3dp" path="res://scenes/scripts/game.gd" id="1_cpr0p"]
 [ext_resource type="Script" uid="uid://bmnsd71ew565l" path="res://scenes/scripts/snake.gd" id="2_78awf"]
@@ -42,24 +42,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=2032693664]
 script = ExtResource("1_cpr0p")
 metadata/_edit_horizontal_guides_ = [522.0]
 
-[node name="Snake" type="Node2D" parent="."]
+[node name="Snake" type="Node2D" parent="." unique_id=2025226230]
 script = ExtResource("2_78awf")
 
-[node name="Head" type="AnimatedSprite2D" parent="Snake"]
+[node name="Head" type="AnimatedSprite2D" parent="Snake" unique_id=1035648528]
 sprite_frames = SubResource("SpriteFrames_qy1jj")
 animation = &"head_animation"
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=590421902]
 script = ExtResource("4_78awf")
 
-[node name="Apple" type="Sprite2D" parent="."]
+[node name="Apple" type="Sprite2D" parent="." unique_id=1017815972]
 texture = ExtResource("5_s0nni")
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=322810015]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

@@ -30,6 +30,9 @@ extends Control
 @onready var HeightInput = %HeightInput
 @onready var CustomVelInput = %CustomVelInput
 
+@onready var MapColorsOpButton = %MapColorsOpButton
+@onready var ColorPreviewGContainer = %ColorPreviewGContainer
+
 
 func _ready():
 	VersionLabel.text = "v" + str(ProjectSettings.get("application/config/version")) # Obtener la versión actual del proyecto
@@ -46,8 +49,11 @@ func _on_play_config_pressed() -> void: # Menu de jugar
 	NormalDiffButton.button_pressed = true
 	_on_normal_diff_button_pressed()
 	
-	toggleEditablePlayConfig(false)
+	_toggleEditablePlayConfig(false)
 	CustomVelInput.editable = false
+
+	MapColorsOpButton.selected = 0
+	_on_map_colors_op_button_item_selected(0)
 
 
 func _on_options_pressed() -> void: # Menu de opciones
@@ -87,7 +93,7 @@ func _on_appearance_tab_button_pressed() -> void:
 
 
 func _on_very_easy_diff_button_pressed() -> void:
-	toggleEditablePlayConfig(false)
+	_toggleEditablePlayConfig(false)
 	WidhtInput.text = "5"
 	HeightInput.text = "5"
 	SlowVelButton.button_pressed = true
@@ -97,7 +103,7 @@ func _on_very_easy_diff_button_pressed() -> void:
 
 
 func _on_easy_diff_button_pressed() -> void:
-	toggleEditablePlayConfig(false)
+	_toggleEditablePlayConfig(false)
 	WidhtInput.text = "10"
 	HeightInput.text = "10"
 	NormalVelButton.button_pressed = true
@@ -107,7 +113,7 @@ func _on_easy_diff_button_pressed() -> void:
 	
 
 func _on_normal_diff_button_pressed() -> void:
-	toggleEditablePlayConfig(false)
+	_toggleEditablePlayConfig(false)
 	WidhtInput.text = "15"
 	HeightInput.text = "15"
 	FastVelButton.button_pressed = true
@@ -117,7 +123,7 @@ func _on_normal_diff_button_pressed() -> void:
 
 
 func _on_hard_diff_button_pressed() -> void:
-	toggleEditablePlayConfig(false)
+	_toggleEditablePlayConfig(false)
 	WidhtInput.text = "20"
 	HeightInput.text = "20"
 	VeryFastVelButton.button_pressed = true
@@ -126,7 +132,7 @@ func _on_hard_diff_button_pressed() -> void:
 	_on_pw_no_button_pressed()
 
 
-func toggleEditablePlayConfig(toggle: bool) -> void:
+func _toggleEditablePlayConfig(toggle: bool) -> void:
 	WidhtInput.editable = toggle
 	HeightInput.editable = toggle
 
@@ -150,7 +156,7 @@ func toggleEditablePlayConfig(toggle: bool) -> void:
 
 
 func _on_custom_diff_button_pressed() -> void:
-	toggleEditablePlayConfig(true)
+	_toggleEditablePlayConfig(true)
 
 
 func _on_slow_vel_button_pressed() -> void:
@@ -183,3 +189,26 @@ func _on_pw_yes_button_pressed() -> void:
 
 func _on_pw_no_button_pressed() -> void:
 	GameSettings.passable_walls = false
+
+
+func _on_map_colors_op_button_item_selected(index: int) -> void:
+	var color1: Color
+	var color2: Color
+
+	match index:
+		0: # Verde
+			color1 = Color("#75a743")
+			color2 = Color("#468232")
+		1: # Azul
+			color1 = Color("#4f8fba")
+			color2 = Color("#3c5e8b")
+		2: # Rojo
+			color1 = Color("#a53030")
+			color2 = Color("#752438")
+	
+	ColorPreviewGContainer.get_node("CR1").color = color1
+	ColorPreviewGContainer.get_node("CR4").color = color1
+	ColorPreviewGContainer.get_node("CR2").color = color2
+	ColorPreviewGContainer.get_node("CR3").color = color2
+
+	GameSettings.map_color = [color1, color2]

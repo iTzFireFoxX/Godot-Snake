@@ -193,7 +193,6 @@ anchor_bottom = 0.5
 offset_top = -11.5
 offset_right = 180.0
 offset_bottom = 11.5
-grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_2wh52")
 theme_override_font_sizes/font_size = 20
@@ -489,13 +488,90 @@ text = "No"
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.03
-anchor_right = 0.99
-anchor_bottom = 0.97
+anchor_left = 0.02
+anchor_top = 0.04
+anchor_right = 0.98
+anchor_bottom = 0.96
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="AppearanceTabVBContainer" type="VBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll" unique_id=775439407]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MapColorControl" type="Control" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer" unique_id=1750301013]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MapColorLabel" type="Label" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl" unique_id=2012499382]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.5
+anchor_right = 0.01
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 280.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 20
+text = "Color del mapa"
+
+[node name="MapColorHBContainer" type="HBoxContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl" unique_id=283983863]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.99
+anchor_top = 0.5
+anchor_right = 0.99
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="MapColorsOpButton" type="OptionButton" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer" unique_id=196404644]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_font_sizes/font_size = 20
+item_count = 3
+popup/item_0/text = "Verde"
+popup/item_0/id = 0
+popup/item_1/text = "Azul"
+popup/item_1/id = 1
+popup/item_2/text = "Rojo"
+popup/item_2/id = 2
+
+[node name="ColorPreviewGContainer" type="GridContainer" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer" unique_id=1420153061]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="CR1" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/ColorPreviewGContainer" unique_id=925494578]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="CR2" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/ColorPreviewGContainer" unique_id=1106608904]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="CR3" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/ColorPreviewGContainer" unique_id=90873271]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="CR4" type="ColorRect" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/ColorPreviewGContainer" unique_id=942975798]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 
 [node name="BackButton" type="Button" parent="MainMenuARContainer/PlayMenuControl/PlayConfigPanel" unique_id=996872414]
 layout_mode = 1
@@ -608,6 +684,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelControl/GameVelButtons/CustomVelButton" to="." method="_on_custom_vel_button_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl/PassableWallsButtons/PWYesButton" to="." method="_on_pw_yes_button_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsControl/PassableWallsButtons/PWNoButton" to="." method="_on_pw_no_button_pressed"]
+[connection signal="item_selected" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorControl/MapColorHBContainer/MapColorsOpButton" to="." method="_on_map_colors_op_button_item_selected"]
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/PlayMenuControl/PlayConfigPanel/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenuARContainer/OptionsMenuControl/OptionsPanel/BackButton" to="." method="_on_back_button_pressed"]

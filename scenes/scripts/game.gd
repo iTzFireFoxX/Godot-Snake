@@ -3,9 +3,9 @@ extends Node2D
 
 # Definir variables
 var timer : float # Cuenta el tiempo para actualizar cada tick del juego
-var map_size: Vector2i # Tamaño del mapa en cantidad de casillas (ancho y alto)
+
 var cell_size: int # Tamaño de las casillas cuadradas
-var game_vel: float # Intervalo de velocidad a la que avanza el juego en segundos
+
 var apple: Sprite2D # Nodo de la manzana
 var apple_pos: Vector2i # Posicion de la manzana (casilla)
 var snake: Node2D # Nodo de la serpiente
@@ -15,11 +15,19 @@ var win: bool
 
 var rng = RandomNumberGenerator.new() # Generación de números aleatorios
 
+# Config del juego
+
+@onready var map_size = GameSettings.map_size # Tamaño del mapa en cantidad de casillas (ancho y alto)
+@onready var game_vel = GameSettings.game_vel # Intervalo de velocidad a la que avanza el juego en segundos
+@onready var passable_walls = GameSettings.passable_walls # Booleano para definir si los bordes son traspasables
+
+
+# Config de apariencia
+
+@onready var map_color = GameSettings.map_color # Color del mapa
+
 
 func _ready():
-
-	map_size = GameSettings.map_size
-	game_vel = GameSettings.game_vel
 
 	win = false
 	snake = $Snake
@@ -28,6 +36,11 @@ func _ready():
 	
 	call_deferred("drawApple")
 	queue_redraw()
+
+
+func _draw():
+	_drawMap(map_size, map_color)
+
 
 func _process(delta):
 	# Comprobar inputs
@@ -62,7 +75,7 @@ func _process(delta):
 			win = true
 
 		# Perder
-		elif snake.snake[0][0] in snake_pos or ((snake.snake[0][0].x >= map_size.x or snake.snake[0][0].x < 0 or snake.snake[0][0].y >= map_size.y or snake.snake[0][0].y < 0) and GameSettings.passable_walls == false): #XD
+		elif snake.snake[0][0] in snake_pos or ((snake.snake[0][0].x >= map_size.x or snake.snake[0][0].x < 0 or snake.snake[0][0].y >= map_size.y or snake.snake[0][0].y < 0) and passable_walls == false): #XD
 			print("perdiste")
 			get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 		
@@ -72,16 +85,7 @@ func _process(delta):
 		
 		snake.drawSnakeSprites()
 
-func _draw():
-	# Dibujar el mapa en base al tamaño definido anteriormente
-	for x in range(map_size.x):
-		for y in range(map_size.y):
-			var pos = Vector2i(x * cell_size, y * cell_size)
-			# Dibujar las casillas de manera intercalada
-			if x % 2 == y % 2:
-				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), Color.WEB_GREEN, true)
-			else:
-				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), Color.DARK_GREEN, true)
+
 
 func drawApple(): # Dibuja la manzana en el mapa de forma aleatoria teniendo en cuenta a la serpiente
 	var n: int
@@ -121,3 +125,15 @@ func del2DSprites(node): # Borra todos los Sprites2D
 	for i in node.get_children():
 		if i is Sprite2D:
 			i.queue_free()
+
+
+func _drawMap(map_size: Vector2i, color: Array[Color]) -> void:
+	# Dibujar el mapa en base al tamaño
+	for x in range(map_size.x):
+		for y in range(map_size.y):
+			var pos = Vector2i(x * cell_size, y * cell_size)
+			# Dibujar las casillas de manera intercalada
+			if x % 2 == y % 2:
+				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), color[0], true)
+			else:
+				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), color[1], true)
