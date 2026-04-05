@@ -29,7 +29,7 @@ extends ScrollContainer
 @onready var PWNo: Button = %PWNo
 
 
-func _on_play_menu_pressed() -> void:
+func _on_play_menu_draw() -> void:
 	NormalDiff.pressed.emit()
 	NormalDiff.button_pressed = true
 

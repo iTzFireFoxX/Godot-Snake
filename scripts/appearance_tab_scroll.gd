@@ -6,7 +6,7 @@ extends ScrollContainer
 @onready var ColorPreview: GridContainer = %ColorPreview
 
 
-func _on_play_menu_pressed() -> void:
+func _on_play_menu_draw() -> void:
 	MapColorsOptions.item_selected.emit(0)
 	MapColorsOptions.selected = 0
 	

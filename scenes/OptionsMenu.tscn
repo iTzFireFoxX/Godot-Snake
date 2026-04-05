@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://wmi4o5hg2mn8"]
+
+[ext_resource type="Script" uid="uid://dvcqjkecg8v44" path="res://scripts/options_menu.gd" id="1_bdakn"]
+[ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_e67m1"]
+
+[node name="OptionsMenu" type="Control" unique_id=1961135705]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bdakn")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=671636450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+stretch_mode = 3
+
+[node name="OptionsMenuControl" type="Control" parent="AspectRatioContainer" unique_id=1516227303]
+layout_mode = 2
+
+[node name="OptionsMenuPanel" type="Panel" parent="AspectRatioContainer/OptionsMenuControl" unique_id=948669782]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.05
+anchor_right = 0.97
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsMenuTitle" type="Label" parent="AspectRatioContainer/OptionsMenuControl/OptionsMenuPanel" unique_id=1478671123]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.04
+anchor_right = 0.5
+anchor_bottom = 0.04
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 36
+text = "Opciones (WIP)"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="AspectRatioContainer/OptionsMenuControl/OptionsMenuPanel" unique_id=1934803384]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.96
+anchor_right = 0.02
+anchor_bottom = 0.96
+offset_top = -58.0
+offset_right = 232.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 26
+text = "< Volver"
+
+[node name="Save" type="Button" parent="AspectRatioContainer/OptionsMenuControl/OptionsMenuPanel" unique_id=1839470722]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.98
+anchor_top = 0.96
+anchor_right = 0.98
+anchor_bottom = 0.96
+offset_left = -272.0
+offset_top = -58.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 26
+text = "Guardar >"
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="pressed" from="AspectRatioContainer/OptionsMenuControl/OptionsMenuPanel/Back" to="." method="_on_back_pressed"]
