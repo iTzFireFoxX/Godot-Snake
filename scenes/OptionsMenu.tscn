@@ -20,7 +20,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.7778
-stretch_mode = 3
 
 [node name="OptionsMenuControl" type="Control" parent="AspectRatioContainer" unique_id=1516227303]
 layout_mode = 2
