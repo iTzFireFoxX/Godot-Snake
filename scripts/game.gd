@@ -3,137 +3,77 @@ extends Node2D
 
 # Definir variables
 var timer : float # Cuenta el tiempo para actualizar cada tick del juego
+var dir: Vector2i # Direccion de la serpiente
 
-var cell_size: int # Tamaño de las casillas cuadradas
 
-var apple: Sprite2D # Nodo de la manzana
-var apple_pos: Vector2i # Posicion de la manzana (casilla)
-var snake: Node2D # Nodo de la serpiente
-var dir: Vector2i
-var snake_pos: Array
-var win: bool
+# Nodos Hijos
+@onready var Snake: Node2D = $Snake # Nodo de la serpiente
+@onready var Food: Node2D = $Food # Nodo de la comida
 
-var rng = RandomNumberGenerator.new() # Generación de números aleatorios
+
+@onready var cell_size: int = GameSettings.cell_size
+
 
 # Config del juego
-
-@onready var map_size = GameSettings.map_size # Tamaño del mapa en cantidad de casillas (ancho y alto)
-@onready var game_vel = GameSettings.game_vel # Intervalo de velocidad a la que avanza el juego en segundos
-@onready var passable_walls = GameSettings.passable_walls # Booleano para definir si los bordes son traspasables
+@onready var map_size: Vector2i = GameSettings.map_size # Tamaño del mapa en cantidad de casillas (ancho y alto)
+@onready var game_vel: float = GameSettings.game_vel # Intervalo de velocidad a la que avanza el juego en segundos
+@onready var passable_walls: bool = GameSettings.passable_walls # Booleano para definir si los bordes son traspasables
 
 
 # Config de apariencia
-
-@onready var map_color = GameSettings.map_color # Color del mapa
-
-
-func _ready():
-
-	win = false
-	snake = $Snake
-	apple = $Apple
-	cell_size = 16 # Definir tamaño de las casillas en pixeles
-	
-	call_deferred("drawApple")
-	queue_redraw()
+@onready var map_color: Array[Color] = GameSettings.map_color # Color del mapa
 
 
-func _draw():
-	_drawMap(map_size, map_color)
+func _ready() -> void:
+	Snake.food_eated.connect(_on_food_eated)
+
+	dir = Vector2i.RIGHT
+	Snake.init_snake(3, dir)
+	Food.init_food(_get_empty_cells(Snake.get_snake_pos_dict()))
 
 
-func _process(delta):
+func _on_food_eated(pos: Vector2i) -> void:
+	Food.update_food_pos(pos, _get_empty_cells(Snake.get_snake_pos_dict()))
+
+
+func _on_draw() -> void:
+	_draw_map()
+
+
+func _process(delta) -> void:
 	# Comprobar inputs
-	if Input.is_action_pressed("move_up") and snake.snake[0][1] != Vector2i.DOWN:
+	if Input.is_action_pressed("move_up") and Snake.snake_dir[0] != Vector2i.DOWN:
 		dir = Vector2i.UP 
-	elif Input.is_action_pressed("move_down") and snake.snake[0][1] != Vector2i.UP:
+	elif Input.is_action_pressed("move_down") and Snake.snake_dir[0] != Vector2i.UP:
 		dir = Vector2i.DOWN
-	elif Input.is_action_pressed("move_right") and snake.snake[0][1] != Vector2i.LEFT:
+	elif Input.is_action_pressed("move_right") and Snake.snake_dir[0] != Vector2i.LEFT:
 		dir = Vector2i.RIGHT
-	elif Input.is_action_pressed("move_left") and snake.snake[0][1] != Vector2i.RIGHT:
+	elif Input.is_action_pressed("move_left") and Snake.snake_dir[0] != Vector2i.RIGHT:
 		dir = Vector2i.LEFT
-
+	
+	# Tick del juego
 	timer += delta
 	if timer >= game_vel:
 		timer = 0.0
-		snake.snake[0][1] = dir
-		del2DSprites(snake)
-		snake.updateSnakePos()
-		snake.updateSnakeDir()
-
-		snake_pos = []
-		for j in snake.snake:
-			snake_pos.append(j[0])
-		snake_pos.pop_front()
-
-		# Ganar
-		if win == true:
-			print("ganaste")
-			get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
-		elif snake.snake.size() >= (map_size.x * map_size.y):
-			apple.position = returnSpritePos(apple_pos)
-			win = true
-
-		# Perder
-		elif snake.snake[0][0] in snake_pos or ((snake.snake[0][0].x >= map_size.x or snake.snake[0][0].x < 0 or snake.snake[0][0].y >= map_size.y or snake.snake[0][0].y < 0) and passable_walls == false): #XD
-			print("perdiste")
-			get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
-		
-		# Redibujar manzana
-		elif apple_pos == Vector2i(-1, -1):
-			drawApple()
-		
-		snake.drawSnakeSprites()
+		Snake.update_snake(dir, Food.get_food_pos())
 
 
-
-func drawApple(): # Dibuja la manzana en el mapa de forma aleatoria teniendo en cuenta a la serpiente
-	var n: int
-	snake_pos = []
-	while true:
-		n = rng.randi_range(0, map_size.x - 1)
-		apple_pos.x = n
-		n = rng.randi_range(0, map_size.y - 1)
-		apple_pos.y = n
-		for i in snake.snake:
-			snake_pos.append(i[0])
-		if apple_pos not in snake_pos:
-			break
-	apple.position = returnSpritePos(apple_pos)
-
-func drawSprite(sprite, texture, pos, rot, node): # Dibuja un sprite en pantalla
-	sprite.texture = texture
-	sprite.position = returnSpritePos(pos)
-	sprite.rotation_degrees = rot
-	node.add_child(sprite)
-
-func returnSpritePos(pos): # Retorna la posición a la que debe dibujarse un sprite en la pantalla
-	return (pos * cell_size) + Vector2i(cell_size / 2, cell_size / 2)
-
-func returnSpriteRotation(d): # Retorna la rotacion de un sprite dependiendo de su dirección
-	match d:
-		Vector2i.UP:
-			return -90
-		Vector2i.DOWN:
-			return 90
-		Vector2i.RIGHT:
-			return 0
-		Vector2i.LEFT:
-			return 180
-
-func del2DSprites(node): # Borra todos los Sprites2D
-	for i in node.get_children():
-		if i is Sprite2D:
-			i.queue_free()
-
-
-func _drawMap(map_size: Vector2i, color: Array[Color]) -> void:
+func _draw_map() -> void:
 	# Dibujar el mapa en base al tamaño
 	for x in range(map_size.x):
 		for y in range(map_size.y):
 			var pos = Vector2i(x * cell_size, y * cell_size)
 			# Dibujar las casillas de manera intercalada
 			if x % 2 == y % 2:
-				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), color[0], true)
+				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), map_color[0], true)
 			else:
-				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), color[1], true)
+				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), map_color[1], true)
+
+
+func _get_empty_cells(snake_pos_dict: Dictionary) -> Dictionary:
+	var empty_cells: Dictionary
+	for x in range(map_size.x):
+		for y in range(map_size.y):
+			if not snake_pos_dict.has(Vector2i(x,y)):
+				empty_cells[Vector2i(x,y)] = true
+	return(empty_cells)

@@ -1,66 +1,28 @@
 [gd_scene format=3 uid="uid://bietb16ebyvry"]
 
-[ext_resource type="Script" uid="uid://bmnugxcdmw3dp" path="res://scripts/game.gd" id="1_cpr0p"]
-[ext_resource type="Script" uid="uid://bmnsd71ew565l" path="res://scripts/snake.gd" id="2_78awf"]
-[ext_resource type="Texture2D" uid="uid://clct67ssevf6k" path="res://assets/sprites/snake/snake_head.png" id="3_s0nni"]
-[ext_resource type="Script" uid="uid://jsai3mb7pw41" path="res://scripts/camera.gd" id="4_78awf"]
-[ext_resource type="Texture2D" uid="uid://ucjc4u6ud223" path="res://assets/sprites/food/apple.png" id="5_s0nni"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aug50"]
-atlas = ExtResource("3_s0nni")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kiw3p"]
-atlas = ExtResource("3_s0nni")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_400sg"]
-atlas = ExtResource("3_s0nni")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g4kob"]
-atlas = ExtResource("3_s0nni")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qy1jj"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aug50")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kiw3p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_400sg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g4kob")
-}],
-"loop": true,
-"name": &"head_animation",
-"speed": 5.0
-}]
+[ext_resource type="Script" uid="uid://bmnugxcdmw3dp" path="res://scripts/game.gd" id="1_lnu2h"]
+[ext_resource type="Script" uid="uid://cehpne081kkpd" path="res://scripts/snake.gd" id="2_lbhrr"]
+[ext_resource type="Script" uid="uid://jsai3mb7pw41" path="res://scripts/camera.gd" id="3_iywne"]
+[ext_resource type="Script" uid="uid://uashd0y32yv5" path="res://scripts/food.gd" id="3_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=2032693664]
-script = ExtResource("1_cpr0p")
+script = ExtResource("1_lnu2h")
 metadata/_edit_horizontal_guides_ = [522.0]
 
 [node name="Snake" type="Node2D" parent="." unique_id=2025226230]
-script = ExtResource("2_78awf")
+script = ExtResource("2_lbhrr")
 
-[node name="Head" type="AnimatedSprite2D" parent="Snake" unique_id=1035648528]
-sprite_frames = SubResource("SpriteFrames_qy1jj")
-animation = &"head_animation"
+[node name="Food" type="Node2D" parent="." unique_id=2058858479]
+position = Vector2(0, 1)
+script = ExtResource("3_lbhrr")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=590421902]
-script = ExtResource("4_78awf")
-
-[node name="Apple" type="Sprite2D" parent="." unique_id=1017815972]
-texture = ExtResource("5_s0nni")
+script = ExtResource("3_iywne")
 
 [node name="UI" type="Control" parent="." unique_id=322810015]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[connection signal="draw" from="." to="." method="_on_draw"]

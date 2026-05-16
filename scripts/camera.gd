@@ -6,18 +6,24 @@ var zoom_x: float
 var zoom_y: float
 var viewport: Vector2
 
+
 func _ready():
-	call_deferred("initCamera")
+	call_deferred("init_camera")
 
-func _process(delta):
-	dynamicZoom()
 
-func initCamera(): # Inizializar camara
+func _process(_delta):
+	dynamic_zoom()
+
+
+# Inicializar camara
+func init_camera(): 
 	game = get_parent()
-	dynamicZoom()
+	dynamic_zoom()
 	position = Vector2((game.map_size.x * game.cell_size) / 2, (game.map_size.y * game.cell_size) / 2)
 
-func dynamicZoom(): # Zoom dinamico al redimensionar
+
+# Zoom dinamico al redimensionar
+func dynamic_zoom():
 	viewport = get_viewport_rect().size
 	zoom_x = viewport.x / (game.map_size.x * game.cell_size)
 	zoom_y = viewport.y / (game.map_size.y * game.cell_size)

@@ -1,105 +1,172 @@
 extends Node2D
+class_name Snake
+
+signal food_eated(food_pos: Vector2i)
 
 
-# Definir variables
-var game: Node2D # La variable del Node2D padre para obtener sus variables y funciones
-var snake: Array # El array que contiene todas las partes de la serpiente incluida la cabeza
-
-# Definir sprites
-@onready var head = $Head # Temporal (placeholder)
-var body_sprite = preload("res://assets/sprites/snake/snake_body.png") # Temporal (placeholder)
-var corner_sprite = preload("res://assets/sprites/snake/snake_corner.png") # Temporal (placeholder)
-var tail_sprite = preload("res://assets/sprites/snake/snake_tail.png") # Temporal (placeholder)
+var snake_size: int = 0
+var snake_pos: Array[Vector2i] = []
+var snake_dir: Array[Vector2i] = []
+var snake_nodes: Array[Node] = []
 
 
-func _ready():
-	call_deferred("initSetup")
+# Sprites
+var head_sprite: Resource = preload("res://assets/sprites/snake/default/snake_head.png")
+var body_sprite: Resource = preload("res://assets/sprites/snake/default/snake_body.png")
+var corner_sprite: Resource = preload("res://assets/sprites/snake/default/snake_corner.png")
+var tail_sprite: Resource = preload("res://assets/sprites/snake/default/snake_tail.png")
 
-func initSetup():
-	game = get_parent() # Llama al nodo padre
-	game.dir = Vector2i.RIGHT # Dirección inicial derecha
-	snake = [
-		[Vector2i((game.map_size.x / 2) + 1, game.map_size.y / 2), Vector2i.RIGHT],
-		[Vector2i(game.map_size.x / 2, game.map_size.y / 2), Vector2i.RIGHT],
-		[Vector2i((game.map_size.x / 2) - 1, game.map_size.y / 2), Vector2i.RIGHT]
-	] # Serpiente inicial
-	drawSnakeSprites()
-	head.play("head_animation") # Iniciar animacion de la cabeza de la serpiente
+
+@onready var cell_size: int = GameSettings.cell_size
+
+
+@onready var map_size: Vector2i = GameSettings.map_size # Tamaño del mapa en cantidad de casillas (ancho y alto)
+@onready var passable_walls: bool = GameSettings.passable_walls # Booleano para definir si los bordes son traspasables
+
+
+# Genera la serpiente inicial de un tamaño variable en el centro del mapa
+func init_snake(size: int, dir: Vector2i) -> void:
+	for i in range(size):
+		add_snake_part(Vector2i((map_size.x/2), (map_size.y/2)) + (-dir * (i+1) + (roundi(size/2.0) * dir)), dir)
+		set_snake_node_pos(i)
+	set_snake_nodes_sprites()
+
+
+func update_snake(dir: Vector2i, food_pos_dict: Dictionary) -> void:
+
+	if snake_size == (map_size.x * map_size.y):
+		print("ganaste")
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
-func updateSnakePos(): # Actualiza la posicion en la celda de cada parte de la serpiente sumando su posicion actual con su direccion
-	for i in range(snake.size()):
+	else:
 
-		snake[i][0] = returnUpdatedPos(snake[i][0], snake[i][1])
+		var tail_pos: Vector2i = snake_pos[snake_size-1]
+		var tail_dir: Vector2i = snake_dir[snake_size-1]
 
+		set_snake_part_dir(0, dir)
+		for i in range(snake_size):
+			set_snake_part_pos(i)
+			set_snake_node_pos(i)
+
+		var snake_pos_dict: Dictionary = get_snake_pos_dict_no_head()
+		
+		if snake_pos_dict.has(snake_pos[0]) or (snake_pos[0].x >= map_size.x or snake_pos[0].x < 0 or snake_pos[0].y >= map_size.y or snake_pos[0].y < 0):
+			print("perdiste")
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+		elif food_pos_dict.has(snake_pos[0]):
+			eat_food(tail_pos, tail_dir)
+					
+		set_snake_dir()
+		set_snake_nodes_sprites()
+
+
+func eat_food(tail_pos: Vector2i, tail_dir: Vector2i) -> void:
+	add_snake_part(tail_pos, tail_dir)
+	set_snake_node_pos(snake_size-1)
+	food_eated.emit(snake_pos[0])
+
+
+func get_snake_pos_dict() -> Dictionary:
+	var snake_pos_dict: Dictionary = {}
+	for i in snake_pos:
+		snake_pos_dict[i] = true
+	return snake_pos_dict
+
+
+func get_snake_pos_dict_no_head() -> Dictionary:
+	var snake_pos_dict: Dictionary = {}
+	for i in range(snake_size):
+		if i != 0:
+			snake_pos_dict[snake_pos[i]] = true
+	return snake_pos_dict
+
+
+func add_snake_part(pos: Vector2i, dir: Vector2i) -> void:
+	snake_pos.append(pos)
+	snake_dir.append(dir)
+	add_snake_node()
+	snake_size += 1
+
+
+# Agrega un nodo hijo al nodo Snake
+func add_snake_node() -> void:
+	var snake_node = Sprite2D.new()
+	add_child(snake_node)
+	snake_nodes.append(snake_node)
+
+
+func set_snake_node_pos(index: int) -> void:
+	snake_nodes[index].position = (snake_pos[index] * cell_size) + Vector2i(cell_size/2, cell_size/2)
+
+
+func set_snake_node_sprite(index: int, dir: Vector2i, sprite: Resource) -> void:
+	match dir:
+		Vector2i.UP:
+			snake_nodes[index].rotation_degrees = -90
+		Vector2i.DOWN:
+			snake_nodes[index].rotation_degrees = 90
+		Vector2i.RIGHT:
+			snake_nodes[index].rotation_degrees = 0
+		Vector2i.LEFT:
+			snake_nodes[index].rotation_degrees = 180
+	snake_nodes[index].texture = sprite
+
+
+func set_snake_nodes_sprites() -> void:
+	for i in range(snake_size):
+		# Sprite head
 		if i == 0:
-			if snake[0][0] == game.apple_pos:
-				addSnakePart()
-				game.apple_pos = Vector2i(-1, -1)
+			set_snake_node_sprite(i, snake_dir[i], head_sprite)
+		# Sprite tail
+		elif i == snake_nodes.size() - 1:
+			set_snake_node_sprite(i, snake_dir[i], tail_sprite)
+		# Corner inferior derecha
+		elif ((return_snake_part_updated_pos(snake_pos[i], Vector2i.UP) == snake_pos[i-1]) and (return_snake_part_updated_pos(snake_pos[i], Vector2i.LEFT) == snake_pos[i+1])) or ((return_snake_part_updated_pos(snake_pos[i], Vector2i.LEFT) == snake_pos[i-1]) and (return_snake_part_updated_pos(snake_pos[i], Vector2i.UP) == snake_pos[i+1])):
+			set_snake_node_sprite(i, Vector2i.RIGHT, corner_sprite)
+		# Corner superior derecha
+		elif ((return_snake_part_updated_pos(snake_pos[i], Vector2i.LEFT) == snake_pos[i-1]) and (return_snake_part_updated_pos(snake_pos[i], Vector2i.DOWN) == snake_pos[i+1])) or ((return_snake_part_updated_pos(snake_pos[i], Vector2i.DOWN) == snake_pos[i-1]) and (return_snake_part_updated_pos(snake_pos[i], Vector2i.LEFT) == snake_pos[i+1])):
+			set_snake_node_sprite(i, Vector2i.UP, corner_sprite)
+		# Corner superior izquierda
+		elif ((return_snake_part_updated_pos(snake_pos[i], Vector2i.DOWN) == snake_pos[i-1]) and (return_snake_part_updated_pos(snake_pos[i], Vector2i.RIGHT) == snake_pos[i+1])) or ((return_snake_part_updated_pos(snake_pos[i], Vector2i.RIGHT) == snake_pos[i-1]) and (return_snake_part_updated_pos(snake_pos[i], Vector2i.DOWN) == snake_pos[i+1])):
+			set_snake_node_sprite(i, Vector2i.LEFT, corner_sprite)
+		# Corner inferior izquieda
+		elif ((return_snake_part_updated_pos(snake_pos[i], Vector2i.RIGHT) == snake_pos[i-1]) and (return_snake_part_updated_pos(snake_pos[i], Vector2i.UP) == snake_pos[i+1])) or ((return_snake_part_updated_pos(snake_pos[i], Vector2i.UP) == snake_pos[i-1]) and (return_snake_part_updated_pos(snake_pos[i], Vector2i.RIGHT) == snake_pos[i+1])):
+			set_snake_node_sprite(i, Vector2i.DOWN, corner_sprite)
+		# Sprite body
+		else: 
+			set_snake_node_sprite(i, snake_dir[i], body_sprite)
 
-func returnUpdatedPos(pos, dir): # Retorna la posicion actualizada de una parte de la serpiente en base a la dirección que tiene
 
-	var updated_pos = pos
-
+func return_snake_part_updated_pos(snake_pos: Vector2i, dir: Vector2i) -> Vector2i:
+	var updated_pos: Vector2i = snake_pos
 	updated_pos += dir
 
-	# Comprobacion de bordes traspasables
-	if GameSettings.passable_walls == true:
-
+	if passable_walls:
 		# Dar la vuelta por los lados
-		if updated_pos.x > game.map_size.x - 1:
+		if updated_pos.x > map_size.x - 1:
 			updated_pos.x = 0
 		elif updated_pos.x < 0:
-			updated_pos.x = game.map_size.x - 1
-
+			updated_pos.x = map_size.x - 1
 		# Dar la vuelta por arriba y abajo
-		if updated_pos.y > game.map_size.y - 1:
+		if updated_pos.y > map_size.y - 1:
 			updated_pos.y = 0
 		elif updated_pos.y < 0:
-			updated_pos.y = game.map_size.y - 1
+			updated_pos.y = map_size.y - 1
 
 	return updated_pos
 
-func drawSnakeSprites(): # Dibuja los sprites de cada parte de la serpiente en la pantalla
-		for i in range(snake.size()):
 
-			# Animación head
-			if i == 0:
-				head.position = game.returnSpritePos(snake[0][0])
-				head.rotation_degrees = game.returnSpriteRotation(snake[0][1])
-			else:
-				var sprite = Sprite2D.new()
+func set_snake_part_pos(index: int) -> void:
+	snake_pos[index] = return_snake_part_updated_pos(snake_pos[index], snake_dir[index])
 
-				# Sprite cola
-				if i == (snake.size() - 1):
-					game.drawSprite(sprite, tail_sprite, snake[i][0], game.returnSpriteRotation(snake[i][1]), self)
 
-				# Sprite esquinas
-				else:
+func set_snake_part_dir(index: int, dir: Vector2i) -> void:
+	snake_dir[index] = dir
 
-					# Esquina inferior derecha
-					if ((returnUpdatedPos(snake[i][0], Vector2i.UP) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.LEFT) == snake[i + 1][0])) or ((returnUpdatedPos(snake[i][0], Vector2i.LEFT) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.UP) == snake[i + 1][0])):
-						game.drawSprite(sprite, corner_sprite, snake[i][0], 0, self)
 
-					# Esquina superior derecha
-					elif ((returnUpdatedPos(snake[i][0], Vector2i.LEFT) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.DOWN) == snake[i + 1][0])) or ((returnUpdatedPos(snake[i][0], Vector2i.DOWN) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.LEFT) == snake[i + 1][0])):
-						game.drawSprite(sprite, corner_sprite, snake[i][0], -90, self)
-
-					# Esquina superior izquierda
-					elif ((returnUpdatedPos(snake[i][0], Vector2i.DOWN) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.RIGHT) == snake[i + 1][0])) or ((returnUpdatedPos(snake[i][0], Vector2i.RIGHT) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.DOWN) == snake[i + 1][0])):
-						game.drawSprite(sprite, corner_sprite, snake[i][0], 180, self)
-
-					# Esquina inferior izquieda
-					elif ((returnUpdatedPos(snake[i][0], Vector2i.RIGHT) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.UP) == snake[i + 1][0])) or ((returnUpdatedPos(snake[i][0], Vector2i.UP) == snake[i - 1][0]) and (returnUpdatedPos(snake[i][0], Vector2i.RIGHT) == snake[i + 1][0])):
-						game.drawSprite(sprite, corner_sprite, snake[i][0], 90, self)
-
-					# Sprite body
-					else: 
-						game.drawSprite(sprite, body_sprite, snake[i][0], game.returnSpriteRotation(snake[i][1]), self)
-
-func updateSnakeDir(): # Actualiza la direccion de cada parte de la serpiente menos la cabeza
-	for i in range(snake.size() -1, -1, -1):
+# Actualiza la direccion de cada parte de la serpiente menos la cabeza
+func set_snake_dir():
+	for i in range(snake_size-1, -1, -1):
 		if i != 0:
-			snake[i][1] = snake[i - 1][1]
-
-func addSnakePart(): # Añade una parte a la serpiente
-	snake.append([snake[snake.size() - 1][0], snake[snake.size() - 1][1]])
+			set_snake_part_dir(i, snake_dir[i-1])

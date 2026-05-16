@@ -1,19 +1,21 @@
 [gd_scene format=3 uid="uid://hpkwrv04k2gf"]
 
-[ext_resource type="Script" uid="uid://bm0u6laj2hv13" path="res://scripts/main_menu.gd" id="1_l72w3"]
-[ext_resource type="Texture2D" uid="uid://fpgv4tv7325t" path="res://assets/sprites/menu/title.png" id="2_l72w3"]
-[ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_2wh52"]
-[ext_resource type="PackedScene" uid="uid://bp2pikrxg4i8f" path="res://scenes/PlayMenu.tscn" id="5_826wr"]
-[ext_resource type="PackedScene" uid="uid://wmi4o5hg2mn8" path="res://scenes/OptionsMenu.tscn" id="6_ucygd"]
+[ext_resource type="Script" uid="uid://bm0u6laj2hv13" path="res://scripts/main_menu.gd" id="1_8ln24"]
+[ext_resource type="Texture2D" uid="uid://fpgv4tv7325t" path="res://assets/sprites/menu/title.png" id="2_rtw2f"]
+[ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_oa1go"]
+[ext_resource type="PackedScene" uid="uid://wmi4o5hg2mn8" path="res://scenes/options_menu.tscn" id="4_tbmy8"]
+[ext_resource type="PackedScene" uid="uid://bp2pikrxg4i8f" path="res://scenes/play_menu.tscn" id="5_jk1qb"]
 
 [node name="MainMenu" type="Control" unique_id=1479972651]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_l72w3")
+script = ExtResource("1_8ln24")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1008000098]
 layout_mode = 1
@@ -46,7 +48,7 @@ anchor_top = 0.1
 anchor_right = 1.0
 anchor_bottom = 0.4
 grow_horizontal = 2
-texture = ExtResource("2_l72w3")
+texture = ExtResource("2_rtw2f")
 stretch_mode = 5
 
 [node name="MainButtons" type="HBoxContainer" parent="MainMenuARContainer/MainMenuControl" unique_id=1343264716]
@@ -66,21 +68,21 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayMenu" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=761524888]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_fonts/font = ExtResource("3_oa1go")
 theme_override_font_sizes/font_size = 42
 text = "Jugar"
 
 [node name="OptionsMenu" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=647385535]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_fonts/font = ExtResource("3_oa1go")
 theme_override_font_sizes/font_size = 42
 text = "Opciones"
 
 [node name="Exit" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=1631482364]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_fonts/font = ExtResource("3_oa1go")
 theme_override_font_sizes/font_size = 42
 text = "Salir"
 
@@ -98,17 +100,17 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_2wh52")
+theme_override_fonts/font = ExtResource("3_oa1go")
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OptionsMenu" parent="." unique_id=1961135705 instance=ExtResource("6_ucygd")]
+[node name="OptionsMenu" parent="." unique_id=1961135705 instance=ExtResource("4_tbmy8")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="PlayMenu" parent="." unique_id=1784397230 instance=ExtResource("5_826wr")]
+[node name="PlayMenu" parent="." unique_id=1784397230 instance=ExtResource("5_jk1qb")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
