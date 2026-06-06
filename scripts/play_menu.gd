@@ -7,8 +7,8 @@ extends Control
 
 
 # Tab Scroll Containers
-@onready var GameTabScroll: ScrollContainer = %GameTabScroll
-@onready var AppearanceTabScroll: ScrollContainer = %AppearanceTabScroll
+@onready var GameTabMenu: ScrollContainer = %GameTabMenu
+@onready var AppearanceTabMenu: ScrollContainer = %AppearanceTabMenu
 
 
 func _on_draw() -> void:
@@ -17,13 +17,13 @@ func _on_draw() -> void:
 
 
 func _on_game_tab_pressed() -> void:
-	AppearanceTabScroll.hide()
-	GameTabScroll.show()
+	AppearanceTabMenu.hide()
+	GameTabMenu.show()
 
 
 func _on_appearance_tab_pressed() -> void:
-	GameTabScroll.hide()
-	AppearanceTabScroll.show()
+	GameTabMenu.hide()
+	AppearanceTabMenu.show()
 	
 
 func _on_back_pressed() -> void:

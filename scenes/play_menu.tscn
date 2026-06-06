@@ -2,16 +2,23 @@
 
 [ext_resource type="Script" uid="uid://cf4e2vwhnbmfp" path="res://scripts/play_menu.gd" id="1_1sbe4"]
 [ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_o3en3"]
-[ext_resource type="Script" uid="uid://cl1r5gumwewtv" path="res://scripts/game_tab_scroll.gd" id="3_dd3vs"]
-[ext_resource type="Script" uid="uid://cti5qnc633pto" path="res://scripts/appearance_tab_scroll.gd" id="4_w427e"]
+[ext_resource type="Script" uid="uid://cl1r5gumwewtv" path="res://scripts/game_tab_menu.gd" id="3_dd3vs"]
+[ext_resource type="Script" uid="uid://bnntuwyrc03dc" path="res://scripts/difficulty_option.gd" id="4_tg8mk"]
+[ext_resource type="ButtonGroup" uid="uid://bx3ow1iepvv0r" path="res://scenes/difficulty_button_group.tres" id="4_uxvnm"]
+[ext_resource type="Script" uid="uid://cti5qnc633pto" path="res://scripts/appearance_tab_menu.gd" id="4_w427e"]
+[ext_resource type="ButtonGroup" uid="uid://bp7mesq2viyy" path="res://scenes/game_vel_button_group.tres" id="5_af7ga"]
+[ext_resource type="Script" uid="uid://c6r3s7ewqnl7f" path="res://scripts/map_size_option.gd" id="6_qi1l4"]
+[ext_resource type="Script" uid="uid://dx8o7rwnbim8t" path="res://scripts/game_vel_option.gd" id="7_jlxyi"]
+[ext_resource type="Script" uid="uid://cd0epbrhxpcg1" path="res://scripts/passable_walls_option.gd" id="9_f30q5"]
+[ext_resource type="Script" uid="uid://ivrljsb6stsv" path="res://scripts/food_amount_option.gd" id="10_aiav6"]
+[ext_resource type="Script" uid="uid://bdou0egoxxwwj" path="res://scripts/initial_size_option.gd" id="11_44n3f"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_2wh52"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_ow34m"]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_a4cai"]
+thickness = 4
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_l72w3"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_826wr"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_af7ga"]
 
 [node name="PlayMenu" type="Control" unique_id=1784397230]
 layout_mode = 3
@@ -38,10 +45,10 @@ layout_mode = 2
 [node name="PlayMenuPanel" type="Panel" parent="PlayMenuARContainer/PlayMenuControl" unique_id=1124537876]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.03
-anchor_top = 0.05
-anchor_right = 0.97
-anchor_bottom = 0.95
+anchor_left = 0.02
+anchor_top = 0.04
+anchor_right = 0.98
+anchor_bottom = 0.96
 offset_left = -1.1999999
 offset_top = -2.0
 offset_right = -1.2000008
@@ -54,13 +61,14 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.04
+anchor_top = 0.03
 anchor_right = 0.5
-anchor_bottom = 0.04
+anchor_bottom = 0.03
 offset_left = -396.0
 offset_right = 396.0
 offset_bottom = 36.000004
 grow_horizontal = 2
+theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
 theme_override_font_sizes/font_size = 36
 text = "Configuración del juego"
@@ -70,9 +78,9 @@ horizontal_alignment = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
-anchor_top = 0.15
+anchor_top = 0.12
 anchor_right = 0.98
-anchor_bottom = 0.22
+anchor_bottom = 0.2
 grow_horizontal = 2
 theme_override_constants/separation = 64
 
@@ -81,7 +89,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 toggle_mode = true
 button_group = SubResource("ButtonGroup_2wh52")
 text = "Juego"
@@ -91,347 +99,499 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 toggle_mode = true
 button_group = SubResource("ButtonGroup_2wh52")
 text = "Apariencia"
 
-[node name="TabMenuPanel" type="Panel" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=644515892]
+[node name="TabPanel" type="Panel" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=644515892]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
-anchor_top = 0.26
+anchor_top = 0.24
 anchor_right = 0.98
 anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameTabScroll" type="ScrollContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel" unique_id=2126265074]
+[node name="GameTabMenu" type="ScrollContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel" unique_id=2126265074]
 unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+draw_focus_border = true
+scroll_hint_mode = 1
+script = ExtResource("3_dd3vs")
+
+[node name="GameTabVBContainer" type="VBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu" unique_id=1792012304]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DifficultyOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=616351194]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("4_tg8mk")
+
+[node name="DifficultyLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption" unique_id=328675139]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
-anchor_top = 0.04
-anchor_right = 0.98
-anchor_bottom = 0.96
+anchor_right = 0.25
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_dd3vs")
-metadata/_edit_use_anchors_ = true
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 24
+text = "Dificultad"
+vertical_alignment = 1
 
-[node name="GameTabVBContainer" type="VBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" unique_id=1792012304]
-layout_mode = 2
+[node name="DifficultyButtons" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption" unique_id=512075329]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.5
+anchor_right = 0.98
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="DifficultyOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=616351194]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="DifficultyLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption" unique_id=328675139]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.5
-anchor_right = 0.01
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 180.0
-offset_bottom = 11.5
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
-text = "Dificultad"
-
-[node name="DifficultyButtons" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption" unique_id=512075329]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.99
-anchor_top = 0.5
-anchor_right = 0.99
-anchor_bottom = 0.5
-offset_left = -291.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
 theme_override_constants/separation = 24
+alignment = 1
 
-[node name="VeryEasyDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=705547090]
+[node name="VeryEasyDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=705547090]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_ow34m")
+button_group = ExtResource("4_uxvnm")
 text = "Muy fácil"
 
-[node name="EasyDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=1923648021]
+[node name="EasyDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=1923648021]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_ow34m")
+button_group = ExtResource("4_uxvnm")
 text = "Fácil"
 
-[node name="NormalDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=1176257270]
+[node name="NormalDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=1176257270]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_ow34m")
+button_group = ExtResource("4_uxvnm")
 text = "Normal"
 
-[node name="HardDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=447518225]
+[node name="HardDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=447518225]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_ow34m")
+button_group = ExtResource("4_uxvnm")
 text = "Difícil"
 
-[node name="CustomDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=2026763348]
+[node name="VeryHardDiff" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons" unique_id=2105482191]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_ow34m")
-text = "Personaliz."
+button_group = ExtResource("4_uxvnm")
+text = "Muy difícil"
 
-[node name="MapSizeOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=2127736499]
+[node name="HSeparator" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=763693009]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
 
-[node name="MapSizeLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption" unique_id=1231592204]
+[node name="MapSizeOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=2127736499]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("6_qi1l4")
+
+[node name="MapSizeLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption" unique_id=1231592204]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.5
-anchor_right = 0.01
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 180.0
-offset_bottom = 11.5
+anchor_left = 0.02
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "Tamaño del mapa"
+vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="MapSizeInputs" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption" unique_id=668696370]
+[node name="MapSizeInputs" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption" unique_id=668696370]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.99
+anchor_left = 0.25
 anchor_top = 0.5
-anchor_right = 0.99
+anchor_right = 0.98
 anchor_bottom = 0.5
-offset_left = -380.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 64
+alignment = 1
 
-[node name="WidthHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs" unique_id=411201252]
+[node name="WidthHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs" unique_id=411201252]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 20
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+alignment = 1
 
-[node name="WidthLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer" unique_id=1901091456]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
-text = "Ancho"
-
-[node name="WidthInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer" unique_id=1518878684]
+[node name="WidthInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer" unique_id=1518878684]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
+alignment = 1
 max_length = 2
 
-[node name="HeightHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs" unique_id=830909463]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 20
-
-[node name="HeightLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer" unique_id=538026839]
+[node name="WidthLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer" unique_id=1901091456]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
-text = "Alto"
+theme_override_font_sizes/font_size = 22
+text = "Casillas de ancho"
+vertical_alignment = 1
 
-[node name="HeightInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer" unique_id=1309613900]
+[node name="HeightHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs" unique_id=830909463]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="HeightInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer" unique_id=1309613900]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
+alignment = 1
 max_length = 2
 
-[node name="GameVelOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=1295814851]
+[node name="HeightLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer" unique_id=538026839]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
+text = "Casillas de alto"
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=55511858]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
 
-[node name="GameVelLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption" unique_id=351204411]
+[node name="GameVelOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1295814851]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("7_jlxyi")
+
+[node name="GameVelLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" unique_id=351204411]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.5
-anchor_right = 0.01
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 180.0
-offset_bottom = 11.5
+anchor_left = 0.02
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 10
+theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
-text = "Velocidad
-del juego"
+theme_override_font_sizes/font_size = 22
+text = "Velocidad del juego"
+vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="GameVelButtons" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption" unique_id=501056415]
+[node name="GameVelButtons" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" unique_id=501056415]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.99
+anchor_left = 0.25
 anchor_top = 0.5
-anchor_right = 0.99
+anchor_right = 0.98
 anchor_bottom = 0.5
-offset_left = -291.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
+alignment = 1
 
-[node name="SlowVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=1736127925]
+[node name="VerySlowVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=280042572]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_l72w3")
+button_group = ExtResource("5_af7ga")
+text = "Muy lento"
+
+[node name="SlowVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=1736127925]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
+toggle_mode = true
+keep_pressed_outside = true
+button_group = ExtResource("5_af7ga")
 text = "Lento"
 
-[node name="NormalVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=815414370]
+[node name="NormalVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=815414370]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
-keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_l72w3")
+button_group = ExtResource("5_af7ga")
 text = "Normal"
 
-[node name="FastVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=996907079]
+[node name="FastVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=996907079]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_l72w3")
+button_group = ExtResource("5_af7ga")
 text = "Rápido"
 
-[node name="VeryFastVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=516787429]
+[node name="VeryFastVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=516787429]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_l72w3")
+button_group = ExtResource("5_af7ga")
 text = "Muy rápido"
 
-[node name="CustomVel" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=611875351]
+[node name="GameVelInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=992077006]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
-toggle_mode = true
-keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_l72w3")
-text = "Personaliz."
-
-[node name="CustomVelInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons" unique_id=992077006]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 4
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 max_length = 4
 
-[node name="PassableWallsOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer" unique_id=1903423027]
+[node name="HSeparator3" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1329790415]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
 
-[node name="PassableWallsLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption" unique_id=1775516521]
+[node name="FoodAmountOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1330656917]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("10_aiav6")
+
+[node name="FoodAmountLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption" unique_id=460188328]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.5
-anchor_right = 0.01
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 380.0
-offset_bottom = 11.5
+anchor_left = 0.02
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
-text = "Bordes traspasables"
+theme_override_font_sizes/font_size = 22
+text = "Cantidad de comida"
+vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="PassableWallsButtons" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption" unique_id=1438021970]
+[node name="FoodAmountHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption" unique_id=1484010776]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.99
+anchor_left = 0.25
 anchor_top = 0.5
-anchor_right = 0.99
+anchor_right = 0.98
 anchor_bottom = 0.5
-offset_left = -291.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
+alignment = 1
 
-[node name="PWYes" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption/PassableWallsButtons" unique_id=1170662436]
+[node name="FoodAmountInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption/FoodAmountHBContainer" unique_id=1745644092]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/minimum_character_width = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
+alignment = 1
+max_length = 2
+
+[node name="FoodLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption/FoodAmountHBContainer" unique_id=358434382]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
+text = "Frutas"
+vertical_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1665206190]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
+
+[node name="InitialSizeOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=343850005]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("11_44n3f")
+
+[node name="InitialSizeLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption" unique_id=1531832673]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
+text = "Tamaño inicial"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="InitialSizeHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption" unique_id=1925282418]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.5
+anchor_right = 0.98
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="InitialSizeInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption/InitialSizeHBContainer" unique_id=1854715161]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/minimum_character_width = 2
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
+alignment = 1
+max_length = 2
+
+[node name="UnitsLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption/InitialSizeHBContainer" unique_id=1532979499]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
+text = "Unidades"
+vertical_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1579072836]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
+
+[node name="PassableWallsOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1903423027]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("9_f30q5")
+
+[node name="PassableWallsLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption" unique_id=1775516521]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
+text = "Bordes traspasables"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PassableWallsButtons" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption" unique_id=1438021970]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.5
+anchor_right = 0.98
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="PWYes" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption/PassableWallsButtons" unique_id=1170662436]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_826wr")
+button_group = SubResource("ButtonGroup_af7ga")
 text = "Si"
 
-[node name="PWNo" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption/PassableWallsButtons" unique_id=367599723]
+[node name="PWNo" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption/PassableWallsButtons" unique_id=367599723]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 48)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 toggle_mode = true
 keep_pressed_outside = true
-button_group = SubResource("ButtonGroup_826wr")
+button_group = SubResource("ButtonGroup_af7ga")
 text = "No"
 
-[node name="AppearanceTabScroll" type="ScrollContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel" unique_id=779534971]
+[node name="AppearanceTabMenu" type="ScrollContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel" unique_id=779534971]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -445,16 +605,16 @@ grow_vertical = 2
 script = ExtResource("4_w427e")
 metadata/_edit_use_anchors_ = true
 
-[node name="AppearanceTabVBContainer" type="VBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll" unique_id=898784978]
+[node name="AppearanceTabVBContainer" type="VBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu" unique_id=898784978]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MapColorOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer" unique_id=1640559422]
+[node name="MapColorOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer" unique_id=1640559422]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MapColorLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption" unique_id=887959218]
+[node name="MapColorLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption" unique_id=887959218]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
@@ -469,7 +629,7 @@ theme_override_fonts/font = ExtResource("2_o3en3")
 theme_override_font_sizes/font_size = 20
 text = "Color del mapa"
 
-[node name="MapColorHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption" unique_id=1630680247]
+[node name="MapColorHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption" unique_id=1630680247]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.99
@@ -483,7 +643,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="MapColorsOptions" type="OptionButton" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=1187984264]
+[node name="MapColorsOptions" type="OptionButton" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=1187984264]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -497,7 +657,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Rojo"
 popup/item_2/id = 2
 
-[node name="ColorPreview" type="GridContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=98859338]
+[node name="ColorPreview" type="GridContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=98859338]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
@@ -506,19 +666,19 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 2
 
-[node name="Rect1" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=1509713123]
+[node name="Rect1" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=1509713123]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="Rect2" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=1843587174]
+[node name="Rect2" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=1843587174]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="Rect3" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=244438407]
+[node name="Rect3" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=244438407]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="Rect4" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=570653056]
+[node name="Rect4" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=570653056]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
@@ -552,25 +712,33 @@ theme_override_font_sizes/font_size = 26
 text = "Jugar >"
 
 [connection signal="draw" from="." to="." method="_on_draw"]
-[connection signal="draw" from="." to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_play_menu_draw"]
-[connection signal="draw" from="." to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll" method="_on_play_menu_draw"]
+[connection signal="draw" from="." to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu" method="_on_play_menu_draw"]
+[connection signal="draw" from="." to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu" method="_on_play_menu_draw"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/PlayMenuTabButtons/GameTab" to="." method="_on_game_tab_pressed"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/PlayMenuTabButtons/AppearanceTab" to="." method="_on_appearance_tab_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/VeryEasyDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_very_easy_diff_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/EasyDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_easy_diff_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/NormalDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_normal_diff_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/HardDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_hard_diff_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/DifficultyOption/DifficultyButtons/CustomDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_custom_diff_pressed"]
-[connection signal="text_changed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer/WidthInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_width_input_text_changed"]
-[connection signal="text_changed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer/HeightInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_height_input_text_changed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/SlowVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_slow_vel_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/NormalVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_normal_vel_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/FastVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_fast_vel_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/VeryFastVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_very_fast_vel_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/CustomVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_custom_vel_pressed"]
-[connection signal="text_changed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/GameVelOption/GameVelButtons/CustomVelInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_custom_vel_input_text_changed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWYes" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_pw_yes_pressed"]
-[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWNo" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/GameTabScroll" method="_on_pw_no_pressed"]
-[connection signal="item_selected" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/MapColorsOptions" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabMenuPanel/AppearanceTabScroll" method="_on_map_colors_options_item_selected"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons/VeryEasyDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption" method="_on_very_easy_diff_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons/EasyDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption" method="_on_easy_diff_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons/NormalDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption" method="_on_normal_diff_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons/HardDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption" method="_on_hard_diff_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption/DifficultyButtons/VeryHardDiff" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption" method="_on_very_hard_diff_pressed"]
+[connection signal="focus_exited" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer/WidthInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption" method="_on_width_input_focus_exited"]
+[connection signal="text_changed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer/WidthInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption" method="_on_width_input_text_changed"]
+[connection signal="text_submitted" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer/WidthInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption" method="_on_width_input_text_submitted"]
+[connection signal="focus_exited" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer/HeightInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption" method="_on_height_input_focus_exited"]
+[connection signal="text_submitted" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer/HeightInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption" method="_on_height_input_text_submitted"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons/VerySlowVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" method="_on_very_slow_vel_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons/SlowVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" method="_on_slow_vel_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons/NormalVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" method="_on_normal_vel_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons/FastVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" method="_on_fast_vel_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons/VeryFastVel" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" method="_on_very_fast_vel_pressed"]
+[connection signal="focus_exited" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons/GameVelInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" method="_on_game_vel_input_focus_exited"]
+[connection signal="text_submitted" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption/GameVelButtons/GameVelInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" method="_on_game_vel_input_text_submitted"]
+[connection signal="focus_exited" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption/FoodAmountHBContainer/FoodAmountInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption" method="_on_food_amount_input_focus_exited"]
+[connection signal="text_submitted" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption/FoodAmountHBContainer/FoodAmountInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption" method="_on_food_amount_input_text_submitted"]
+[connection signal="focus_exited" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption/InitialSizeHBContainer/InitialSizeInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption" method="_on_initial_size_input_focus_exited"]
+[connection signal="text_submitted" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption/InitialSizeHBContainer/InitialSizeInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption" method="_on_initial_size_input_text_submitted"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWYes" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption" method="_on_pw_yes_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWNo" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption" method="_on_pw_no_pressed"]
+[connection signal="item_selected" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/MapColorsOptions" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu" method="_on_map_colors_options_item_selected"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/Play" to="." method="_on_play_pressed"]

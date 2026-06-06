@@ -31,4 +31,4 @@ func _on_map_colors_options_item_selected(index: int) -> void:
 	ColorPreview.get_node("Rect2").color = color2
 	ColorPreview.get_node("Rect3").color = color2
 
-	GameSettings.map_color = [color1, color2]
+	GameSettings.appearance_settings["map_color"] = [color1, color2]

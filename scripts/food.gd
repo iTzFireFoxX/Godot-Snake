@@ -1,17 +1,21 @@
 extends Node2D
-class_name Food
 
 
 var food_pos: Dictionary = {}
 var food_nodes: Array[Node] = []
 
+
 var apple_sprite: Resource = preload("res://assets/sprites/food/apple.png")
+var orange_sprite: Resource = preload("res://assets/sprites/food/orange.png")
+
+
+var food_sprites: Array[Resource] = [apple_sprite, orange_sprite]
 
 
 @onready var cell_size: int = GameSettings.cell_size
 
 
-@onready var food_amount: int = GameSettings.food_amount
+@onready var food_amount: int = GameSettings.game_settings["food_amount"]
 
 
 func init_food(empty_cells: Dictionary) -> void:
@@ -21,7 +25,7 @@ func init_food(empty_cells: Dictionary) -> void:
 		food_pos[random_pos] = i
 		add_food_node()
 		set_food_node_pos(i, random_pos)
-		set_food_node_sprite(i, apple_sprite)
+		set_food_node_sprite(i, food_sprites.pick_random())
 
 
 func get_food_pos() -> Dictionary:
@@ -56,7 +60,7 @@ func add_food_node() -> void:
 
 
 func set_food_node_pos(index: int, pos: Vector2i) -> void:
-	food_nodes[index].position = (pos * cell_size) + Vector2i(cell_size/2, cell_size/2)
+	food_nodes[index].position = (pos * cell_size) + Vector2i(cell_size / 2, cell_size / 2)
 
 
 func set_food_node_sprite(index: int, sprite: Resource) -> void:

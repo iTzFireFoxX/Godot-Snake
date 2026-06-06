@@ -69,21 +69,21 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_oa1go")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 46
 text = "Jugar"
 
 [node name="OptionsMenu" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=647385535]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_oa1go")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 46
 text = "Opciones"
 
 [node name="Exit" type="Button" parent="MainMenuARContainer/MainMenuControl/MainButtons" unique_id=1631482364]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_oa1go")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 46
 text = "Salir"
 
 [node name="Version" type="Label" parent="." unique_id=1176643071]
