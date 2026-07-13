@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cd0epbrhxpcg1" path="res://scripts/passable_walls_option.gd" id="9_f30q5"]
 [ext_resource type="Script" uid="uid://ivrljsb6stsv" path="res://scripts/food_amount_option.gd" id="10_aiav6"]
 [ext_resource type="Script" uid="uid://bdou0egoxxwwj" path="res://scripts/initial_size_option.gd" id="11_44n3f"]
+[ext_resource type="Script" uid="uid://ntdr10lttwu7" path="res://scripts/map_color_option.gd" id="13_i28jh"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_2wh52"]
 
@@ -136,7 +137,6 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-size_flags_vertical = 3
 script = ExtResource("4_tg8mk")
 
 [node name="DifficultyLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption" unique_id=328675139]
@@ -152,6 +152,7 @@ theme_override_fonts/font = ExtResource("2_o3en3")
 theme_override_font_sizes/font_size = 24
 text = "Dificultad"
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="DifficultyButtons" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/DifficultyOption" unique_id=512075329]
 layout_mode = 1
@@ -224,14 +225,12 @@ text = "Muy difícil"
 
 [node name="HSeparator" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=763693009]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
 
 [node name="MapSizeOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=2127736499]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-size_flags_vertical = 3
 script = ExtResource("6_qi1l4")
 
 [node name="MapSizeLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption" unique_id=1231592204]
@@ -270,8 +269,8 @@ alignment = 1
 
 [node name="WidthInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/WidthHBContainer" unique_id=1518878684]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
 theme_override_font_sizes/font_size = 22
@@ -298,8 +297,8 @@ alignment = 1
 
 [node name="HeightInput" type="LineEdit" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/MapSizeOption/MapSizeInputs/HeightHBContainer" unique_id=1309613900]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
 theme_override_font_sizes/font_size = 22
@@ -318,14 +317,12 @@ vertical_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=55511858]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
 
 [node name="GameVelOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1295814851]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-size_flags_vertical = 3
 script = ExtResource("7_jlxyi")
 
 [node name="GameVelLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/GameVelOption" unique_id=351204411]
@@ -339,7 +336,7 @@ grow_vertical = 2
 theme_override_constants/line_spacing = 10
 theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 text = "Velocidad del juego"
 vertical_alignment = 1
 autowrap_mode = 3
@@ -416,14 +413,12 @@ max_length = 4
 
 [node name="HSeparator3" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1329790415]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
 
 [node name="FoodAmountOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1330656917]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-size_flags_vertical = 3
 script = ExtResource("10_aiav6")
 
 [node name="FoodAmountLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption" unique_id=460188328]
@@ -436,7 +431,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 text = "Cantidad de comida"
 vertical_alignment = 1
 autowrap_mode = 3
@@ -463,7 +458,7 @@ theme_override_font_sizes/font_size = 22
 alignment = 1
 max_length = 2
 
-[node name="FoodLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption/FoodAmountHBContainer" unique_id=358434382]
+[node name="FruitsLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/FoodAmountOption/FoodAmountHBContainer" unique_id=358434382]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_constants/outline_size = 24
@@ -474,14 +469,12 @@ vertical_alignment = 1
 
 [node name="HSeparator4" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1665206190]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
 
 [node name="InitialSizeOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=343850005]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-size_flags_vertical = 3
 script = ExtResource("11_44n3f")
 
 [node name="InitialSizeLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption" unique_id=1531832673]
@@ -494,7 +487,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 text = "Tamaño inicial"
 vertical_alignment = 1
 autowrap_mode = 3
@@ -521,25 +514,23 @@ theme_override_font_sizes/font_size = 22
 alignment = 1
 max_length = 2
 
-[node name="UnitsLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption/InitialSizeHBContainer" unique_id=1532979499]
+[node name="CellsLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption/InitialSizeHBContainer" unique_id=1532979499]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
 theme_override_font_sizes/font_size = 22
-text = "Unidades"
+text = "Casillas"
 vertical_alignment = 1
 
 [node name="HSeparator5" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1579072836]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
 
 [node name="PassableWallsOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer" unique_id=1903423027]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-size_flags_vertical = 3
 script = ExtResource("9_f30q5")
 
 [node name="PassableWallsLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption" unique_id=1775516521]
@@ -552,7 +543,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 text = "Bordes traspasables"
 vertical_alignment = 1
 autowrap_mode = 3
@@ -595,15 +586,15 @@ text = "No"
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.02
-anchor_top = 0.04
-anchor_right = 0.98
-anchor_bottom = 0.96
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+draw_focus_border = true
+scroll_hint_mode = 1
 script = ExtResource("4_w427e")
-metadata/_edit_use_anchors_ = true
 
 [node name="AppearanceTabVBContainer" type="VBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu" unique_id=898784978]
 layout_mode = 2
@@ -611,76 +602,81 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MapColorOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer" unique_id=1640559422]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-size_flags_vertical = 3
+script = ExtResource("13_i28jh")
 
 [node name="MapColorLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption" unique_id=887959218]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.5
-anchor_right = 0.01
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 280.0
-offset_bottom = 11.5
+anchor_left = 0.02
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "Color del mapa"
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="MapColorHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption" unique_id=1630680247]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.99
+anchor_left = 0.25
 anchor_top = 0.5
-anchor_right = 0.99
+anchor_right = 0.98
 anchor_bottom = 0.5
-offset_left = -132.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 24
+alignment = 1
 
 [node name="MapColorsOptions" type="OptionButton" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=1187984264]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_o3en3")
-theme_override_font_sizes/font_size = 20
-item_count = 3
+theme_override_font_sizes/font_size = 22
+item_count = 4
 popup/item_0/text = "Verde"
 popup/item_0/id = 0
 popup/item_1/text = "Azul"
 popup/item_1/id = 1
 popup/item_2/text = "Rojo"
 popup/item_2/id = 2
+popup/item_3/text = "Amarillo"
+popup/item_3/id = 3
 
 [node name="ColorPreview" type="GridContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=98859338]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 2
 
 [node name="Rect1" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=1509713123]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 
 [node name="Rect2" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=1843587174]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 
 [node name="Rect3" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=244438407]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 
 [node name="Rect4" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=570653056]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer" unique_id=2101786164]
+visible = false
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
 
 [node name="Back" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=713940902]
 layout_mode = 1
@@ -739,6 +735,6 @@ text = "Jugar >"
 [connection signal="text_submitted" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption/InitialSizeHBContainer/InitialSizeInput" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/InitialSizeOption" method="_on_initial_size_input_text_submitted"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWYes" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption" method="_on_pw_yes_pressed"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWNo" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption" method="_on_pw_no_pressed"]
-[connection signal="item_selected" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/MapColorsOptions" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu" method="_on_map_colors_options_item_selected"]
+[connection signal="item_selected" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/MapColorsOptions" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption" method="_on_map_colors_options_item_selected"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/Play" to="." method="_on_play_pressed"]

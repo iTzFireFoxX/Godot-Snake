@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://hpkwrv04k2gf"]
 
 [ext_resource type="Script" uid="uid://bm0u6laj2hv13" path="res://scripts/main_menu.gd" id="1_8ln24"]
-[ext_resource type="Texture2D" uid="uid://fpgv4tv7325t" path="res://assets/sprites/menu/title.png" id="2_rtw2f"]
 [ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_oa1go"]
 [ext_resource type="PackedScene" uid="uid://wmi4o5hg2mn8" path="res://scenes/options_menu.tscn" id="4_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://bp2pikrxg4i8f" path="res://scenes/play_menu.tscn" id="5_jk1qb"]
@@ -11,21 +10,13 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8ln24")
-
-[node name="Background" type="ColorRect" parent="." unique_id=1008000098]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.38039216, 0.6, 1, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="MainMenuARContainer" type="AspectRatioContainer" parent="." unique_id=1076020760]
 unique_name_in_owner = true
@@ -41,24 +32,39 @@ metadata/_edit_use_anchors_ = true
 [node name="MainMenuControl" type="Control" parent="MainMenuARContainer" unique_id=1568594531]
 layout_mode = 2
 
-[node name="GameTitle" type="TextureRect" parent="MainMenuARContainer/MainMenuControl" unique_id=680521637]
+[node name="Title" type="Label" parent="MainMenuARContainer/MainMenuControl" unique_id=746917764]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.1
-anchor_right = 1.0
-anchor_bottom = 0.4
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+offset_left = -726.0
+offset_top = -71.0
+offset_right = 726.0
+offset_bottom = 71.0
 grow_horizontal = 2
-texture = ExtResource("2_rtw2f")
-stretch_mode = 5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.7490196, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.2509804, 0, 1)
+theme_override_constants/shadow_offset_x = 16
+theme_override_constants/shadow_offset_y = 16
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("3_oa1go")
+theme_override_font_sizes/font_size = 128
+text = "Pixel Snake"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MainButtons" type="HBoxContainer" parent="MainMenuARContainer/MainMenuControl" unique_id=1343264716]
+custom_minimum_size = Vector2(0, 172)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.55000067
+anchor_top = 0.65
 anchor_right = 0.95
-anchor_bottom = 0.7500008
-offset_top = 3.0517578e-05
+anchor_bottom = 0.65
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 96

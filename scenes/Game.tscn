@@ -4,6 +4,13 @@
 [ext_resource type="Script" uid="uid://cehpne081kkpd" path="res://scripts/snake.gd" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://jsai3mb7pw41" path="res://scripts/camera.gd" id="3_iywne"]
 [ext_resource type="Script" uid="uid://uashd0y32yv5" path="res://scripts/food.gd" id="3_lbhrr"]
+[ext_resource type="Shader" uid="uid://do2yjjxfgdm67" path="res://shaders/shadow.gdshader" id="5_iywne"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]
+shader = ExtResource("5_iywne")
+shader_parameter/shadow_color = Color(0, 0, 0, 0.5)
+shader_parameter/lenght = 8.0
+shader_parameter/rect_size = Vector2(0, 0)
 
 [node name="Game" type="Node2D" unique_id=2032693664]
 script = ExtResource("1_lnu2h")
@@ -22,12 +29,12 @@ script = ExtResource("3_lbhrr")
 unique_name_in_owner = true
 script = ExtResource("3_iywne")
 
-[node name="UI" type="Control" parent="." unique_id=322810015]
+[node name="Shadow" type="ColorRect" parent="." unique_id=354799273]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+texture_filter = 2
+material = SubResource("ShaderMaterial_lbhrr")
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
 [connection signal="draw" from="." to="." method="_on_draw"]

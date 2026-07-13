@@ -58,14 +58,17 @@ const very_hard_diff: Dictionary = {
     "passable_walls": false
 }
 
-const initial_appearance_settings: Dictionary = {
-    "map_color": [Color("#75a743"), Color("#468232")]
+const map_colors: Dictionary = {
+    0: [Color("#9dd962"), Color("#94cc5c"), Color("#63992e")], # Verde
+    1: [Color("#629dd9"), Color("#5c94cc"), Color("#2e6399")], # Azul
+    2: [Color("#d96262"), Color("#cc5c5c"), Color("#992e2e")], # Rojo
+    3: [Color("#d9d962"), Color("#cccc5c"), Color("#99992e")], # Amarillo
 }
 
 
 func _ready() -> void:
     set_diff("normal")
-    appearance_settings = initial_appearance_settings.duplicate()
+    set_initial_appearance_settings()
 
 
 func set_map_size_x(x: int) -> void:
@@ -104,3 +107,11 @@ func set_diff(diff: String) -> void:
             game_settings = hard_diff.duplicate()
         "very_hard":
             game_settings = very_hard_diff.duplicate()
+
+
+func set_map_color(map_color: int) -> void:
+    appearance_settings["map_color"] = map_colors[map_color]
+
+
+func set_initial_appearance_settings() -> void:
+    set_map_color(0)

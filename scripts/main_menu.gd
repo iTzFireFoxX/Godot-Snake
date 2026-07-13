@@ -12,6 +12,7 @@ extends Control
 
 
 func _ready() -> void:
+	RenderingServer.set_default_clear_color(Color("#6199ff"))
 	Version.text = "v" + str(ProjectSettings.get("application/config/version")) # Obtener la versión actual del proyecto
 
 

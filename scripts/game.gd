@@ -9,6 +9,7 @@ var dir: Vector2i # Direccion de la serpiente
 # Nodos Hijos
 @onready var Snake: Node2D = %Snake # Nodo de la serpiente
 @onready var Food: Node2D = %Food # Nodo de la comida
+@onready var Shadow: ColorRect = $Shadow
 
 
 @onready var cell_size: int = GameSettings.cell_size
@@ -71,6 +72,7 @@ func _process(delta) -> void:
 
 
 func _draw_map() -> void:
+	RenderingServer.set_default_clear_color(map_color[2])
 	# Dibujar el mapa en base al tamaño
 	for x in range(map_size.x):
 		for y in range(map_size.y):
@@ -81,6 +83,8 @@ func _draw_map() -> void:
 			else:
 				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), map_color[1], true)
 
+	Shadow.size = Vector2i(map_size.x * cell_size, map_size.y * cell_size)
+	Shadow.material.set_shader_parameter("rect_size", Vector2i(map_size.x * cell_size, map_size.y * cell_size))
 
 func _get_empty_cells(snake_pos_dict: Dictionary) -> Dictionary:
 	var empty_cells: Dictionary
