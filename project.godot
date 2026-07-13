@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Godot Snake"
+config/name="Pixel Snake"
 config/description="El clásico juego Snake recreado desde cero en Godot"
 config/version="0.3.0-beta"
 run/main_scene="uid://hpkwrv04k2gf"
