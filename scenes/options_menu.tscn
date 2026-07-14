@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://wmi4o5hg2mn8"]
+
+[ext_resource type="Script" uid="uid://dvcqjkecg8v44" path="res://scripts/options_menu.gd" id="1_bdakn"]
+[ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_e67m1"]
+[ext_resource type="Script" uid="uid://bolo6tptdeqah" path="res://scripts/video_tab_menu.gd" id="3_hm4m4"]
+[ext_resource type="Script" uid="uid://ceniowmwfwxg5" path="res://scripts/full_screen_option.gd" id="4_lfjc7"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_hm4m4"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_lfjc7"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ut0wk"]
+thickness = 4
+
+[node name="OptionsMenu" type="Control" unique_id=1961135705]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bdakn")
+
+[node name="OptionsMenuARContainer" type="AspectRatioContainer" parent="." unique_id=1324953415]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+
+[node name="OptionsMenuControl" type="Control" parent="OptionsMenuARContainer" unique_id=1585659977]
+layout_mode = 2
+
+[node name="OptionsMenuPanel" type="Panel" parent="OptionsMenuARContainer/OptionsMenuControl" unique_id=1912355458]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.04
+anchor_right = 0.98
+anchor_bottom = 0.96
+offset_left = -1.1999999
+offset_top = -2.0
+offset_right = -1.2000008
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionsMenuTitle" type="Label" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel" unique_id=1880207021]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.03
+anchor_right = 0.5
+anchor_bottom = 0.03
+offset_left = -396.0
+offset_right = 396.0
+offset_bottom = 36.000004
+grow_horizontal = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 36
+text = "Opciones"
+horizontal_alignment = 1
+
+[node name="OptionsMenuTabButtons" type="HBoxContainer" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel" unique_id=1046128474]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.12
+anchor_right = 0.98
+anchor_bottom = 0.2
+grow_horizontal = 2
+theme_override_constants/separation = 64
+
+[node name="VideoTab" type="Button" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/OptionsMenuTabButtons" unique_id=701290260]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hm4m4")
+text = "Video"
+
+[node name="AudioTab" type="Button" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/OptionsMenuTabButtons" unique_id=2014330461]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 32
+disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hm4m4")
+text = "Sonido (WIP)"
+
+[node name="TabPanel" type="Panel" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel" unique_id=1399301657]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.24
+anchor_right = 0.98
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoTabMenu" type="ScrollContainer" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel" unique_id=371757780]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+draw_focus_border = true
+scroll_hint_mode = 1
+script = ExtResource("3_hm4m4")
+
+[node name="VideoTabVBContainer" type="VBoxContainer" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu" unique_id=461306661]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FullScreenOption" type="Control" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer" unique_id=255970662]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+script = ExtResource("4_lfjc7")
+
+[node name="FullScreenLabel" type="Label" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer/FullScreenOption" unique_id=1746724665]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 24
+text = "Pantalla completa"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="FullScreenButtons" type="HBoxContainer" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer/FullScreenOption" unique_id=1009438889]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.5
+anchor_right = 0.98
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="FSYes" type="Button" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer/FullScreenOption/FullScreenButtons" unique_id=487572929]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 22
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_lfjc7")
+text = "Si"
+
+[node name="FSNo" type="Button" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer/FullScreenOption/FullScreenButtons" unique_id=684806411]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 22
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_lfjc7")
+text = "No"
+
+[node name="HSeparator" type="HSeparator" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer" unique_id=521860379]
+visible = false
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ut0wk")
+
+[node name="AudioTabMenu" type="ScrollContainer" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel" unique_id=623094354]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+draw_focus_border = true
+scroll_hint_mode = 1
+
+[node name="AudioTabVBContainer" type="VBoxContainer" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/AudioTabMenu" unique_id=358134870]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Back" type="Button" parent="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel" unique_id=1105777959]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.96
+anchor_right = 0.02
+anchor_bottom = 0.96
+offset_top = -58.0
+offset_right = 232.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_e67m1")
+theme_override_font_sizes/font_size = 26
+text = "< Volver"
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="draw" from="." to="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu" method="_on_options_menu_draw"]
+[connection signal="pressed" from="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/OptionsMenuTabButtons/VideoTab" to="." method="_on_video_tab_pressed"]
+[connection signal="pressed" from="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/OptionsMenuTabButtons/AudioTab" to="." method="_on_audio_tab_pressed"]
+[connection signal="pressed" from="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer/FullScreenOption/FullScreenButtons/FSYes" to="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer/FullScreenOption" method="_on_fs_yes_pressed"]
+[connection signal="pressed" from="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer/FullScreenOption/FullScreenButtons/FSNo" to="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/TabPanel/VideoTabMenu/VideoTabVBContainer/FullScreenOption" method="_on_fs_no_pressed"]
+[connection signal="pressed" from="OptionsMenuARContainer/OptionsMenuControl/OptionsMenuPanel/Back" to="." method="_on_back_pressed"]

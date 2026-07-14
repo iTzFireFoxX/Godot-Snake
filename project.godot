@@ -14,11 +14,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Godot Snake"
+config/name="Pixel Snake"
 config/description="El clásico juego Snake recreado desde cero en Godot"
-config/version="0.2.1-beta"
-run/main_scene="uid://c8qi8w4r0wuew"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/version="0.3.0-beta"
+run/main_scene="uid://hpkwrv04k2gf"
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -66,3 +66,4 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
