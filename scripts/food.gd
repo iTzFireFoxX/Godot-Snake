@@ -5,11 +5,7 @@ var food_pos: Dictionary = {}
 var food_nodes: Array[Node] = []
 
 
-var apple_sprite: Resource = preload("res://assets/sprites/food/apple.png")
-var orange_sprite: Resource = preload("res://assets/sprites/food/orange.png")
-
-
-var food_sprites: Array[Resource] = [apple_sprite, orange_sprite]
+var food_sprites: Array = GameSettings.appearance_settings["food_sprites"]
 
 
 @onready var cell_size: int = GameSettings.cell_size

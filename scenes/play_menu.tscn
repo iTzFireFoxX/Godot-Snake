@@ -13,6 +13,10 @@
 [ext_resource type="Script" uid="uid://ivrljsb6stsv" path="res://scripts/food_amount_option.gd" id="10_aiav6"]
 [ext_resource type="Script" uid="uid://bdou0egoxxwwj" path="res://scripts/initial_size_option.gd" id="11_44n3f"]
 [ext_resource type="Script" uid="uid://ntdr10lttwu7" path="res://scripts/map_color_option.gd" id="13_i28jh"]
+[ext_resource type="Texture2D" uid="uid://ucjc4u6ud223" path="res://assets/sprites/food/apple.png" id="14_77b2i"]
+[ext_resource type="Script" uid="uid://c2hus8eyr7mli" path="res://scripts/food_pull_option.gd" id="14_x76kw"]
+[ext_resource type="Texture2D" uid="uid://ceea22w8bhgh7" path="res://assets/sprites/food/orange.png" id="15_rcqgc"]
+[ext_resource type="Texture2D" uid="uid://dxnrne62jd2jf" path="res://assets/sprites/food/grapes.png" id="16_x76kw"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_2wh52"]
 
@@ -20,6 +24,18 @@
 thickness = 4
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_af7ga"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4nt4x"]
+viewport_path = NodePath("PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/GreenSubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i6nux"]
+viewport_path = NodePath("PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/BlueSubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7ctoh"]
+viewport_path = NodePath("PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/RedSubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_aueoj"]
+viewport_path = NodePath("PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/YellowSubViewport")
 
 [node name="PlayMenu" type="Control" unique_id=1784397230]
 layout_mode = 3
@@ -117,6 +133,7 @@ grow_vertical = 2
 
 [node name="GameTabMenu" type="ScrollContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel" unique_id=2126265074]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -584,7 +601,6 @@ text = "No"
 
 [node name="AppearanceTabMenu" type="ScrollContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel" unique_id=779534971]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -636,47 +652,256 @@ alignment = 1
 
 [node name="MapColorsOptions" type="OptionButton" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=1187984264]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
 theme_override_font_sizes/font_size = 22
+icon_alignment = 1
+expand_icon = true
 item_count = 4
-popup/item_0/text = "Verde"
+popup/item_0/icon = SubResource("ViewportTexture_4nt4x")
 popup/item_0/id = 0
-popup/item_1/text = "Azul"
+popup/item_1/icon = SubResource("ViewportTexture_i6nux")
 popup/item_1/id = 1
-popup/item_2/text = "Rojo"
+popup/item_2/icon = SubResource("ViewportTexture_7ctoh")
 popup/item_2/id = 2
-popup/item_3/text = "Amarillo"
+popup/item_3/icon = SubResource("ViewportTexture_aueoj")
 popup/item_3/id = 3
 
-[node name="ColorPreview" type="GridContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=98859338]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 2
+[node name="GreenSubViewport" type="SubViewport" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=407999097]
+size = Vector2i(64, 64)
 
-[node name="Rect1" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=1509713123]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
+[node name="Back" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/GreenSubViewport" unique_id=1484156663]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.3882353, 0.6, 0.18039216, 1)
 
-[node name="Rect2" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=1843587174]
+[node name="Rect1" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/GreenSubViewport" unique_id=290797275]
 custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.6156863, 0.8509804, 0.38431373, 1)
 
-[node name="Rect3" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=244438407]
+[node name="Rect2" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/GreenSubViewport" unique_id=508376563]
 custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
+offset_left = 32.0
+offset_top = 6.0
+offset_right = 58.0
+offset_bottom = 32.0
+color = Color(0.5803922, 0.8, 0.36078432, 1)
 
-[node name="Rect4" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/ColorPreview" unique_id=570653056]
+[node name="Rect3" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/GreenSubViewport" unique_id=517515026]
 custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
+offset_left = 6.0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 58.0
+color = Color(0.5803922, 0.8, 0.36078432, 1)
+
+[node name="Rect4" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/GreenSubViewport" unique_id=1645860772]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 58.0
+offset_bottom = 58.0
+color = Color(0.6156863, 0.8509804, 0.38431373, 1)
+
+[node name="BlueSubViewport" type="SubViewport" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=1914200851]
+size = Vector2i(64, 64)
+
+[node name="Back" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/BlueSubViewport" unique_id=923848204]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.18039216, 0.3882353, 0.6, 1)
+
+[node name="Rect1" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/BlueSubViewport" unique_id=710471336]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.38431373, 0.6156863, 0.8509804, 1)
+
+[node name="Rect2" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/BlueSubViewport" unique_id=1569071155]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 32.0
+offset_top = 6.0
+offset_right = 58.0
+offset_bottom = 32.0
+color = Color(0.36078432, 0.5803922, 0.8, 1)
+
+[node name="Rect3" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/BlueSubViewport" unique_id=1127547955]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 6.0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 58.0
+color = Color(0.36078432, 0.5803922, 0.8, 1)
+
+[node name="Rect4" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/BlueSubViewport" unique_id=1823740977]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 58.0
+offset_bottom = 58.0
+color = Color(0.38431373, 0.6156863, 0.8509804, 1)
+
+[node name="RedSubViewport" type="SubViewport" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=858454013]
+size = Vector2i(64, 64)
+
+[node name="Back" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/RedSubViewport" unique_id=1027120263]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.6, 0.18039216, 0.18039216, 1)
+
+[node name="Rect1" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/RedSubViewport" unique_id=1688768092]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.8509804, 0.38431373, 0.38431373, 1)
+
+[node name="Rect2" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/RedSubViewport" unique_id=1685315403]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 32.0
+offset_top = 6.0
+offset_right = 58.0
+offset_bottom = 32.0
+color = Color(0.8, 0.36078432, 0.36078432, 1)
+
+[node name="Rect3" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/RedSubViewport" unique_id=1069338429]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 6.0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 58.0
+color = Color(0.8, 0.36078432, 0.36078432, 1)
+
+[node name="Rect4" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/RedSubViewport" unique_id=214880489]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 58.0
+offset_bottom = 58.0
+color = Color(0.8509804, 0.38431373, 0.38431373, 1)
+
+[node name="YellowSubViewport" type="SubViewport" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=1584056949]
+size = Vector2i(64, 64)
+
+[node name="Back" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/YellowSubViewport" unique_id=626243613]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.6, 0.6, 0.18039216, 1)
+
+[node name="Rect1" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/YellowSubViewport" unique_id=1732148282]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.8509804, 0.8509804, 0.38431373, 1)
+
+[node name="Rect2" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/YellowSubViewport" unique_id=1016314626]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 32.0
+offset_top = 6.0
+offset_right = 58.0
+offset_bottom = 32.0
+color = Color(0.8, 0.8, 0.36078432, 1)
+
+[node name="Rect3" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/YellowSubViewport" unique_id=1402973181]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 6.0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 58.0
+color = Color(0.8, 0.8, 0.36078432, 1)
+
+[node name="Rect4" type="ColorRect" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/YellowSubViewport" unique_id=1315284218]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 58.0
+offset_bottom = 58.0
+color = Color(0.8509804, 0.8509804, 0.38431373, 1)
 
 [node name="HSeparator" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer" unique_id=2101786164]
-visible = false
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
+
+[node name="FoodPullOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer" unique_id=1398498527]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+script = ExtResource("14_x76kw")
+
+[node name="FoodPullLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption" unique_id=1988977773]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 24
+text = "Comidas activas"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="FoodPullScrollContainer" type="ScrollContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption" unique_id=583037499]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.98
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FoodPullHBContainer" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer" unique_id=423684579]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Apple" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer" unique_id=18265146]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+icon = ExtResource("14_77b2i")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Orange" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer" unique_id=107325418]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+icon = ExtResource("15_rcqgc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Grapes" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer" unique_id=720873637]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+icon = ExtResource("16_x76kw")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Back" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=713940902]
 layout_mode = 1
@@ -736,5 +961,8 @@ text = "Jugar >"
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWYes" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption" method="_on_pw_yes_pressed"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption/PassableWallsButtons/PWNo" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/GameTabMenu/GameTabVBContainer/PassableWallsOption" method="_on_pw_no_pressed"]
 [connection signal="item_selected" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer/MapColorsOptions" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption" method="_on_map_colors_options_item_selected"]
+[connection signal="toggled" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer/Apple" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption" method="_on_apple_toggled"]
+[connection signal="toggled" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer/Orange" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption" method="_on_orange_toggled"]
+[connection signal="toggled" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer/Grapes" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption" method="_on_grapes_toggled"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/Play" to="." method="_on_play_pressed"]

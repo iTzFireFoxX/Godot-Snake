@@ -86,6 +86,7 @@ func _draw_map() -> void:
 	Shadow.size = Vector2i(map_size.x * cell_size, map_size.y * cell_size)
 	Shadow.material.set_shader_parameter("rect_size", Vector2i(map_size.x * cell_size, map_size.y * cell_size))
 
+
 func _get_empty_cells(snake_pos_dict: Dictionary) -> Dictionary:
 	var empty_cells: Dictionary
 	for x in range(map_size.x):

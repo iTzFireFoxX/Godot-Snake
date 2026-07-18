@@ -4,6 +4,11 @@ extends Node
 var cell_size: int = 16
 
 
+var apple_sprite: Resource = preload("res://assets/sprites/food/apple.png")
+var orange_sprite: Resource = preload("res://assets/sprites/food/orange.png")
+var grapes_sprite: Resource = preload("res://assets/sprites/food/grapes.png")
+
+
 # Config actual del juego
 var game_settings: Dictionary = {}
 var appearance_settings: Dictionary = {}
@@ -115,3 +120,4 @@ func set_map_color(map_color: int) -> void:
 
 func set_initial_appearance_settings() -> void:
     set_map_color(0)
+    appearance_settings["food_sprites"] = [apple_sprite, orange_sprite, grapes_sprite]
