@@ -121,3 +121,4 @@ func set_map_color(map_color: int) -> void:
 func set_initial_appearance_settings() -> void:
     set_map_color(0)
     appearance_settings["food_sprites"] = [apple_sprite, orange_sprite, grapes_sprite]
+    appearance_settings["change_food_on_eat"] = true

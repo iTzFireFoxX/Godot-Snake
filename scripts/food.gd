@@ -38,6 +38,8 @@ func update_food_pos(pos: Vector2i, empty_cells: Dictionary) -> void:
 		var random_pos = valid_cells.pick_random()
 		food_pos[random_pos] = index
 		set_food_node_pos(index, random_pos)
+		if GameSettings.appearance_settings["change_food_on_eat"]:
+			set_food_node_sprite(index, food_sprites.pick_random())
 
 
 func return_valid_food_cells(empty_cells: Dictionary) -> Array[Vector2i]:

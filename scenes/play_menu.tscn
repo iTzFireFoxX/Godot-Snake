@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://c2hus8eyr7mli" path="res://scripts/food_pull_option.gd" id="14_x76kw"]
 [ext_resource type="Texture2D" uid="uid://ceea22w8bhgh7" path="res://assets/sprites/food/orange.png" id="15_rcqgc"]
 [ext_resource type="Texture2D" uid="uid://dxnrne62jd2jf" path="res://assets/sprites/food/grapes.png" id="16_x76kw"]
+[ext_resource type="Script" uid="uid://dwiymocg2smcd" path="res://scripts/change_food_on_eat_option.gd" id="19_4nt4x"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_2wh52"]
 
@@ -43,6 +44,8 @@ shader = ExtResource("14_phdgt")
 shader_parameter/shadow_color = Color(0, 0, 0, 0.5)
 shader_parameter/lenght = 13.0
 shader_parameter/rect_size = Vector2(52, 52)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_phdgt"]
 
 [node name="PlayMenu" type="Control" unique_id=1784397230]
 layout_mode = 3
@@ -659,7 +662,7 @@ alignment = 1
 
 [node name="MapColorsOptions" type="OptionButton" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/MapColorOption/MapColorHBContainer" unique_id=1187984264]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_o3en3")
 theme_override_font_sizes/font_size = 22
@@ -926,7 +929,7 @@ alignment = 1
 
 [node name="Apple" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer" unique_id=18265146]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 size_flags_vertical = 4
 toggle_mode = true
@@ -936,7 +939,7 @@ expand_icon = true
 
 [node name="Orange" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer" unique_id=107325418]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 size_flags_vertical = 4
 toggle_mode = true
@@ -946,13 +949,72 @@ expand_icon = true
 
 [node name="Grapes" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer" unique_id=720873637]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 size_flags_vertical = 4
 toggle_mode = true
 icon = ExtResource("16_x76kw")
 icon_alignment = 1
 expand_icon = true
+
+[node name="HSeparator2" type="HSeparator" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer" unique_id=152001926]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_a4cai")
+
+[node name="ChangeFoodOnEatOption" type="Control" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer" unique_id=705715726]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+script = ExtResource("19_4nt4x")
+
+[node name="ChangeFoodOnEatLabel" type="Label" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/ChangeFoodOnEatOption" unique_id=1051629837]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 24
+text = "Cambiar comida al comer"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ChangeFoodOnEatButtons" type="HBoxContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/ChangeFoodOnEatOption" unique_id=572286777]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.5
+anchor_right = 0.98
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="CFOEYes" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/ChangeFoodOnEatOption/ChangeFoodOnEatButtons" unique_id=2135493782]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_phdgt")
+text = "Si"
+
+[node name="CFOENo" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/ChangeFoodOnEatOption/ChangeFoodOnEatButtons" unique_id=2077829531]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_o3en3")
+theme_override_font_sizes/font_size = 22
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_phdgt")
+text = "No"
 
 [node name="Back" type="Button" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel" unique_id=713940902]
 layout_mode = 1
@@ -1015,5 +1077,7 @@ text = "Jugar >"
 [connection signal="toggled" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer/Apple" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption" method="_on_apple_toggled"]
 [connection signal="toggled" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer/Orange" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption" method="_on_orange_toggled"]
 [connection signal="toggled" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption/FoodPullScrollContainer/FoodPullHBContainer/Grapes" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/FoodPullOption" method="_on_grapes_toggled"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/ChangeFoodOnEatOption/ChangeFoodOnEatButtons/CFOEYes" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/ChangeFoodOnEatOption" method="_on_cfoe_yes_pressed"]
+[connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/ChangeFoodOnEatOption/ChangeFoodOnEatButtons/CFOENo" to="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel/AppearanceTabMenu/AppearanceTabVBContainer/ChangeFoodOnEatOption" method="_on_cfoe_no_pressed"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/Play" to="." method="_on_play_pressed"]
