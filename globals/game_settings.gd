@@ -24,23 +24,23 @@ const game_vels: Dictionary = {
 }
 
 const very_easy_diff: Dictionary = {
-    "map_size": Vector2i(8, 8),
+    "map_size": Vector2i(6, 6),
     "game_vel": game_vels["very_slow"],
-    "food_amount": 5,
-    "initial_size": 5,
-    "passable_walls": true
-}
-
-const easy_diff: Dictionary = {
-    "map_size": Vector2i(10, 10),
-    "game_vel": game_vels["slow"],
-    "food_amount": 2,
+    "food_amount": 4,
     "initial_size": 4,
     "passable_walls": true
 }
 
+const easy_diff: Dictionary = {
+    "map_size": Vector2i(8, 8),
+    "game_vel": game_vels["slow"],
+    "food_amount": 2,
+    "initial_size": 3,
+    "passable_walls": true
+}
+
 const normal_diff: Dictionary = {
-    "map_size": Vector2i(12, 12),
+    "map_size": Vector2i(10, 10),
     "game_vel": game_vels["normal"],
     "food_amount": 1,
     "initial_size": 3,
@@ -48,7 +48,7 @@ const normal_diff: Dictionary = {
 }
 
 const hard_diff: Dictionary = {
-    "map_size": Vector2i(15, 15),
+    "map_size": Vector2i(12, 12),
     "game_vel": game_vels["fast"],
     "food_amount": 1,
     "initial_size": 3,
@@ -56,7 +56,7 @@ const hard_diff: Dictionary = {
 }
 
 const very_hard_diff: Dictionary = {
-    "map_size": Vector2i(20, 20),
+    "map_size": Vector2i(15, 15),
     "game_vel": game_vels["very_fast"],
     "food_amount": 1,
     "initial_size": 3,
