@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bietb16ebyvry"]
 
-[ext_resource type="Script" uid="uid://bmnugxcdmw3dp" path="res://scripts/game.gd" id="1_lnu2h"]
-[ext_resource type="Script" uid="uid://cehpne081kkpd" path="res://scripts/snake.gd" id="2_lbhrr"]
-[ext_resource type="Script" uid="uid://jsai3mb7pw41" path="res://scripts/camera.gd" id="3_iywne"]
-[ext_resource type="Script" uid="uid://uashd0y32yv5" path="res://scripts/food.gd" id="3_lbhrr"]
+[ext_resource type="Script" uid="uid://bmnugxcdmw3dp" path="res://scripts/game/game.gd" id="1_lnu2h"]
+[ext_resource type="Script" uid="uid://cehpne081kkpd" path="res://scripts/game/snake.gd" id="2_lbhrr"]
+[ext_resource type="Script" uid="uid://jsai3mb7pw41" path="res://scripts/game/camera.gd" id="3_iywne"]
+[ext_resource type="Script" uid="uid://uashd0y32yv5" path="res://scripts/game/food.gd" id="3_lbhrr"]
 [ext_resource type="Shader" uid="uid://do2yjjxfgdm67" path="res://shaders/shadow.gdshader" id="5_iywne"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]

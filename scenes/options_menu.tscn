@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://wmi4o5hg2mn8"]
 
-[ext_resource type="Script" uid="uid://dvcqjkecg8v44" path="res://scripts/options_menu.gd" id="1_bdakn"]
+[ext_resource type="Script" uid="uid://dvcqjkecg8v44" path="res://scripts/main_menu/options_menu/options_menu.gd" id="1_bdakn"]
 [ext_resource type="FontFile" uid="uid://eoohfrwomb6v" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_e67m1"]
-[ext_resource type="Script" uid="uid://bolo6tptdeqah" path="res://scripts/video_tab_menu.gd" id="3_hm4m4"]
-[ext_resource type="Script" uid="uid://ceniowmwfwxg5" path="res://scripts/full_screen_option.gd" id="4_lfjc7"]
+[ext_resource type="Script" uid="uid://bolo6tptdeqah" path="res://scripts/main_menu/options_menu/video_tab_menu/video_tab_menu.gd" id="3_hm4m4"]
+[ext_resource type="Script" uid="uid://ceniowmwfwxg5" path="res://scripts/main_menu/options_menu/video_tab_menu/options/full_screen_option.gd" id="4_lfjc7"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_hm4m4"]
 
