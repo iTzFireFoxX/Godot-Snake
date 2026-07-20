@@ -18,7 +18,10 @@ var GameVelButtonGroup: ButtonGroup = preload("res://scenes/game_vel_button_grou
 
 
 func set_game_vel(game_vel: String) -> void:
-	GameSettings.set_game_vel(game_vel.to_float())
+	if game_vel.to_float() < 0.1:
+		GameVelInput.text = "0.1"
+
+	GameSettings.set_game_vel(GameVelInput.text.to_float())
 	game_settings_updated.emit()
 
 

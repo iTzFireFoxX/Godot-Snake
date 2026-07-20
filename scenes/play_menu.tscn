@@ -143,7 +143,6 @@ grow_vertical = 2
 
 [node name="GameTabMenu" type="ScrollContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel" unique_id=2126265074]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -611,6 +610,7 @@ text = "No"
 
 [node name="AppearanceTabMenu" type="ScrollContainer" parent="PlayMenuARContainer/PlayMenuControl/PlayMenuPanel/TabPanel" unique_id=779534971]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -9,12 +9,18 @@ signal game_settings_updated()
 
 
 func set_width(width: String) -> void:
-	GameSettings.set_map_size_x(width.to_int())
+	if width.to_int() < 4:
+		WidthInput.text = "4"
+
+	GameSettings.set_map_size_x(WidthInput.text.to_int())
 	game_settings_updated.emit()
 
 
 func set_height(height: String) -> void:
-	GameSettings.set_map_size_y(height.to_int())
+	if height.to_int() < 4:
+		HeightInput.text = "4"
+
+	GameSettings.set_map_size_y(HeightInput.text.to_int())
 	game_settings_updated.emit()
 
 
