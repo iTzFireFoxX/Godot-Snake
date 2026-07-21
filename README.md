@@ -33,3 +33,5 @@ Ten en cuenta que el proyecto actualmente esta siendo desarrollado en Godot Engi
 ## Licencia
 
 Este proyecto está licenciado bajo la [MIT License](./LICENSE).
+
+Este proyecto utiliza la fuente "Press Start 2P" bajo la [SIL Open Font License, Version 1.1](./assets/fonts/OFL.txt).
