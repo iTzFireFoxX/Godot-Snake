@@ -1,27 +1,28 @@
 extends Camera2D
 
 
-var zoom_x: float
-var zoom_y: float
-var viewport: Vector2
+@onready var cell_size: int = GameSettings.cell_size
+@onready var map_size: Vector2 = GameSettings.game_settings["map_size"]
 
-@onready var cell_size = GameSettings.cell_size
-
-@onready var map_size = GameSettings.game_settings["map_size"]
+@onready var ui_top_px: float = 128.0
+@onready var border_px: float = 0.5 * cell_size 
 
 
-func _ready():
-	dynamic_zoom()
-	position = Vector2((map_size.x * cell_size) / 2, (((map_size.y  * cell_size) - (2 * map_size.y)) / 2))
+func _ready() -> void:
+	get_viewport().size_changed.connect(_on_viewport_size_changed)
+	update_camera()
 
 
-func _process(_delta):
-	dynamic_zoom()
+func _on_viewport_size_changed() -> void:
+	update_camera()
 
 
-# Zoom dinamico al redimensionar
-func dynamic_zoom():
-	viewport = get_viewport_rect().size
-	zoom_x = viewport.x / ((map_size.x * cell_size) + (1 * map_size.x))
-	zoom_y = viewport.y / ((map_size.y * cell_size) + (3 * map_size.y))
+func update_camera() -> void:
+	var viewport_size: Vector2 = get_viewport_rect().size
+	
+	var zoom_x: float = (viewport_size.y - ui_top_px) / ((map_size.x * cell_size) + (border_px * 2))
+	var zoom_y: float = viewport_size.x / ((map_size.y * cell_size) + (border_px * 2))
+	
 	zoom = Vector2(min(zoom_x, zoom_y), min(zoom_x, zoom_y))
+
+	position = Vector2((map_size.x * cell_size) / 2.0, (map_size.y * cell_size) / 2.0) - Vector2(0, (ui_top_px / 2.0) / min(zoom_x, zoom_y))
