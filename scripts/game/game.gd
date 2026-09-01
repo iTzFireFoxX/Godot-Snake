@@ -11,6 +11,9 @@ var dir: Vector2i # Direccion de la serpiente
 @onready var Food: Node2D = %Food # Nodo de la comida
 @onready var Shadow: ColorRect = $Shadow
 
+@onready var GameStats: Control = %GameStats
+@onready var WinMenu: Control = %WinMenu
+@onready var LoseMenu: Control = %LoseMenu
 
 @onready var cell_size: int = GameSettings.cell_size
 
@@ -36,16 +39,19 @@ func _ready() -> void:
 
 
 func _on_food_eated(pos: Vector2i) -> void:
-	Food.update_food_pos(pos, _get_empty_cells(Snake.get_snake_pos_dict()))
+	GameStats.Food.texture = Food.get_food_node_sprite(Food.food_pos[pos])
+	GameStats.PointsLabel.text = str(GameStats.PointsLabel.text.to_int() + 1)
 
+	Food.update_food_pos(pos, _get_empty_cells(Snake.get_snake_pos_dict()))
+	
 
 func _on_win() -> void:
-	print("ganaste")
+	WinMenu.visible = true
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
 func _on_lose() -> void:
-	print("perdiste")
+	LoseMenu.visible = true
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
@@ -84,6 +90,7 @@ func _draw_map() -> void:
 				draw_rect(Rect2(pos, Vector2i(cell_size, cell_size)), map_color[1], true)
 
 	Shadow.size = Vector2i(map_size.x * cell_size, map_size.y * cell_size)
+	Shadow.material.set_shader_parameter("lenght", 0.5 * cell_size)
 	Shadow.material.set_shader_parameter("rect_size", Vector2i(map_size.x * cell_size, map_size.y * cell_size))
 
 

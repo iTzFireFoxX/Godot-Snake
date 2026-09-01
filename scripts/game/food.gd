@@ -63,3 +63,7 @@ func set_food_node_pos(index: int, pos: Vector2i) -> void:
 
 func set_food_node_sprite(index: int, sprite: Resource) -> void:
 	food_nodes[index].texture = sprite
+
+
+func get_food_node_sprite(index: int) -> Resource:
+	return food_nodes[index].texture

@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 
 uniform vec4 shadow_color : source_color = vec4(0.0, 0.0, 0.0, 0.5);
-uniform float lenght = 8;
+uniform float lenght = 0;
 uniform vec2 rect_size = vec2(0, 0);
 
 
